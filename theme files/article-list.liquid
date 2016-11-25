@@ -1,0 +1,41 @@
+<section class="site-content-container__body page--folder-article-list" id="folder-show-{{folder.id}}">
+
+  <div class="breadcrumb">
+    <a href="{{ portal.solutions_home_url }}">
+      {% translate portal.solutions_home %}
+    </a>
+    <a href="{{ folder.category.url }}">
+      {{ folder.category.name | h}}
+    </a>
+  </div>
+
+  <h2 class="main-section-title">{{ folder.name | h }}</h2>
+
+  <p>{{ folder.description | h}}</p>
+
+  {% if folder.articles_count > 0 %}
+    {% paginate folder.articles by 10 %}    
+      <section class="folder-article-list">
+        {% for article in paginate.collection %}
+          
+          <div class="folder-article-list__item">
+            <h5 class="folder-article-list__title">
+              <a href="{{ article.url }}">{{ article.title | h }}</a>
+            </h5>
+            <p class="folder-article-list__description">
+              {{  article.body_plain | h | truncate:160 }}
+            </p>
+            <div class="folder-article-list__subtext article-meta-data">
+              {{ article.modified_on | short_day_with_time }}
+            </div>
+          </div>
+
+        {% endfor %}
+      </section>
+      {{ paginate | default_pagination }}
+    {% endpaginate %}
+  {% else %}
+    {{ folder| h | filler_for_folders }}
+  {% endif %}
+
+</section>

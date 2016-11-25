@@ -1,0 +1,49 @@
+<div class="flex-container">
+  
+  <section class="site-content-container__body page--article-content" id="article-show-{{ article.id }}">
+      <div class="breadcrumb">
+        <a href="{{ portal.solutions_home_url }}"> {% translate portal.solutions_home %} </a>
+        <a href="{{ article.category.url }}">{{ article.category.name | h}}</a>
+        <a href="{{ article.folder.url }}">{{ article.folder.name | h}}</a>
+      </div>
+
+      <!-- <b class="page-stamp page-stamp-article">
+        <b class="icon-page-article"></b>
+      </b> -->
+
+      <h2 class="article-heading">{{ article.title | h}}
+        <a href="javascript:print();" class="icon-print solution-print-icon" title="{% translate portal.print_title %}"></a>
+      </h2>
+
+      {% if article.personalized_articles? %}
+        <h5 class="article__author article-meta-data">
+          {% translate portal.article.created_by %} {{ article.author }}
+        </h5> 
+      {% endif %}
+      
+      <h5 class="article__modified-date article-meta-data">
+        {% translate portal.article.modified_on %} {{ article.modified_on | short_day_with_time }}
+      </h5>
+
+      {% comment %}
+      <div class="article__tags">
+        {% for tag in article.tags %}
+          <span class="label label-info">{{tag.name | h}}</span>
+        {% endfor %}
+      </div>
+      {% endcomment %}
+
+      <article class="article__body" id="article-body" rel="image-enlarge">
+        {{ article.body }}
+      </article>
+
+      {{article | article_attachments}}
+      {{article | article_voting }}
+
+  </section>
+
+  <section class="site-sidebar">
+    {{ article | related_articles: 10, 'related_articles' }}
+  </section>
+
+</div>

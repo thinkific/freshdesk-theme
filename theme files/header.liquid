@@ -1,0 +1,89 @@
+{% if  portal.current_page != 'csat_survey' %}  
+  
+  {% unless portal.current_tab == "home" or portal.current_page == "submit_ticket"  %}
+    {% assign is_visible = 'is-visible' %}
+  {% endunless %}
+
+  <header class="header header--white {{ is_visible }}">
+    <div class="flex-container">
+      <a href="/" class="header__logo">
+        <img src="https://s3.amazonaws.com/thinkific/file_uploads/565/images/513/a4b/fd8/thinkific-logo.png" alt="{{ portal.name }} logo">
+      </a>
+      <nav class="header__site-nav" >
+        {% if portal.tabs.size > 0 %}
+          <a data-toggle-dom="#header-tabs" href="#" data-animated="true" class="mobile-icon-nav-menu show-in-mobile"></a>
+          <div class="nav-link" id="header-tabs">
+            {% for tab in portal.tabs %}
+              {% if tab.url %}
+                <a href="{{tab.url}}" class="header-tabs__link {% if tab.tab_type == portal.current_tab %}active{% endif %}">{{ tab.label }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </nav>
+      <div class="header-search">
+        <form class="header-search-form" 
+              autocomplete="off" 
+              action="/support/search" 
+              id="header-search-form">
+          <input placeholder="Enter your search term here..." 
+                 type="text" 
+                 name="term" 
+                 class="header-search-input" 
+                 value="" 
+                 data-max-matches="10" 
+                 id="header-search-input" 
+                 autocomplete="off">
+          <input type="hidden" 
+                 name="authenticity_token" 
+                 value="2y6ez+hc/laSH0c2IFSvMcUD8E57dN+icWLZ+ocerZo=">
+        </form>
+      </div>
+      <nav class="header__account-nav">
+        <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
+        <a href="/support/login" class="header-tabs__link">Sign in</a>
+        <a href="https://www.thinkific.com/signin/" class="x-btn x-btn-primary x-btn-sm">
+          Get Started Free
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  {% if portal.current_tab == "home" or portal.current_page == "submit_ticket" %}
+    <header class="header">
+      <div class="flex-container">
+        <a href="/" class="header__logo">
+          <img src="{{ portal.logo_url }}" alt="{{ portal.name }} logo">
+        </a>
+        <nav class="header__site-nav" >
+          {% if portal.tabs.size > 0 %}
+            <a data-toggle-dom="#header-tabs" href="#" data-animated="true" class="mobile-icon-nav-menu show-in-mobile"></a>
+            <div class="nav-link" id="header-tabs">
+              {% for tab in portal.tabs %}
+                {% if tab.url %}
+                  <a href="{{tab.url}}" class="header-tabs__link {% if tab.tab_type == portal.current_tab %}active{% endif %}">{{ tab.label }}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </nav>
+        <nav class="header__account-nav">
+          <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
+          <a href="/support/login" class="header-tabs__link">Sign in</a>
+          <a href="https://www.thinkific.com/signin/" class="x-btn x-btn-primary x-btn-sm">
+            Get Started Free
+          </a>
+        </nav>
+      </div>
+    </header>
+  {% endif %}
+
+
+{% else %} 
+  <header class="header">
+    <div class="header__logo">
+      {{ portal | logo : true }}
+    </div>
+  </header>
+{% endif %}
+

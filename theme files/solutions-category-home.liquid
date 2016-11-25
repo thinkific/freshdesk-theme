@@ -1,0 +1,35 @@
+<section class="site-content-container__body page--solutions-folder-article-list" id="solutions-category-{{ category.id }}">
+  
+  <div class="breadcrumb">
+    <a href="{{ portal.solutions_home_url }}">
+      {% translate portal.solutions_home %}
+    </a>
+  </div>
+  
+  <h2 class="main-section-title">{{ category.name | h}}</h2>
+  
+  {% for folder in category.folders %}
+    {% if folder.articles_count > 0 %}
+      <section class="article-list-container">
+        <h5 class="article-list__folder-title">
+          {{ folder | link_to_folder_with_count }}
+        </h5>
+        <ul class="x-article-list">
+          {% for article in folder.articles limit:5 %}
+            <li class="x-article-list__item">
+              <div class="ellipsis">
+                <a href="{{article.url}}" title="{{article.title | h}}">
+                  {{article.title |h}}
+                </a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+        {% if folder.articles.size > 5 %}
+          {{ folder | link_to_see_all_articles }}
+        {% endif %}
+      </section>
+    {% endif %}
+  {% endfor %}
+
+</section>

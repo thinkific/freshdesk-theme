@@ -1,0 +1,9 @@
+<!-- Navigation for creating new ticket, and checking ticket status -->
+
+<div class="hc-nav {% if portal.contact_info %} nav-with-contact {% endif %}">        
+  {{ portal | helpcenter_navigation }}
+</div>
+
+<!-- returns name of the portal -->
+
+{{portal.name|h}}

@@ -1,0 +1,53 @@
+<div class="page-wrapper">
+
+  <!-- Header -->
+  {{ header }}
+
+  <!-- Search box -->
+  {% if portal.current_tab == "home" %}
+    {% assign hero_large = "search-hero--large" %}
+  {% endif %}
+
+  {% if portal.current_page == "submit_ticket" %}
+    {% assign hero_small = "search-hero--small" %}
+  {% endif %}
+  
+  {% if portal.current_tab == "home" or portal.current_page == "submit_ticket" %}
+    <section class="search-hero {{ hero_large }} {{ hero_small }}">
+      <h1 class="search-hero__title">
+        {% translate header.help_center %}
+      </h1>
+      <div class="search-hero__form-container">
+        {% snippet search_form %}
+        <div class="search-hero__popular-searches">
+          <strong>Common Searches:</strong>
+          {% assign common_searches = "Landing Page,Affiliate,Themes" | split:"," %}
+          {% for category in portal.solution_categories %}
+            {% if common_searches contains category.name and forloop.last %}
+              <a href="{{ category.url }}">{{ category.name }}</a>
+            {% elsif common_searches contains category.name %}
+              <a href="{{ category.url }}">{{ category.name }}</a>,
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>      
+    </section>
+  {% endif %}
+
+  <!-- Notification Messages -->
+  {{ page_message }}
+
+
+  <!-- Change the layout wrapper so section on home can reach the edge of the page -->
+    {% if portal.current_tab == 'home' or portal.current_page == "submit_ticket" %}
+    {{ content_for_layout }}
+  {% else %}
+    <div class="site-content-container">   
+      {{ content_for_layout }}
+    </div>
+  {% endif %}
+
+  <!-- Footer -->
+  {{ footer }}
+
+</div>

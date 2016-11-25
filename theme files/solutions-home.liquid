@@ -1,0 +1,29 @@
+<section class="site-content-container__body page--solutions-home" id="solutions-home">
+  
+  <h2 class="main-section-title">
+    {% translate portal.knowledge_base %}
+  </h2>
+
+  {% for category in portal.solution_categories %}
+    {% if category.folders_count > 0 %}
+      <div class="solutions-home__category">
+        <h4 class="solutions-home__category-title"> 
+          {{ category.name | link_to: category.url }} 
+        </h4>
+        <div class="solutions-home__folder-list">
+          {% for folder in category.folders %}
+            <section class="solutions-home__article-list">
+              <h5 class="article-list__folder-title">
+                {{ folder | link_to_folder_with_count }}
+              </h5>
+              {{ folder | article_list:5 }}
+            </section>
+          {% else %}
+            {{ portal | filler_for_solutions }}
+          {% endfor %}
+        </div>
+      </div>  
+    {% endif %}
+  {% endfor %}
+
+</section>

@@ -1,0 +1,65 @@
+{% if  portal.current_page != 'csat_survey' %}
+  <footer class="page-footer">
+    <div class="page-footer__inner">
+
+      <nav class="page-footer__column home-links">
+        <div class="column-header">
+          Thinkific Home
+        </div>
+        <a href="//www.thinkific.com" target="_blank">Thinkific Website</a>
+        <a href="//www.thinkific.com/tour" target="_blank">Take a Tour</a>
+        <a href="//www.thinkific.com/features" target="_blank">Features</a>
+        <a href="//www.thinkific.com/pricing" target="_blank">Pricing</a>
+        <a href="//experts.thinkific.com/pricing" target="_blank">Find an Expert</a>
+      </nav>
+
+      <nav class="page-footer__column freshdesk-links">
+        {% if portal.tabs.size > 0 %}
+          <div class="column-header">
+            Support Resources
+          </div>
+          {% for tab in portal.tabs %}
+            <a href="{{tab.url}}" class="{% if tab.tab_type == current_tab %}active{% endif %}">
+              {{ tab.label }}
+            </a>
+          {% endfor %}
+        {% endif %}
+        {{ portal | link_to_privacy_policy }}
+      </nav>
+
+      <nav class="page-footer__column social-links">
+        <div class="column-header">
+          Connect with us
+        </div>
+        <a href="/support/tickets/new" target="_blank">Contact Support</a>
+        <a href="https://twitter.com/thinkific" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/Thinkific/" target="_blank">Facebook</a>
+        <a href="https://www.youtube.com/user/Thinkific" target="_blank">Youtube</a>
+        <a href="//blog.thinkific.com" target="_blank">Blog</a>
+      </nav>
+      
+      <div class="page-footer__copyright">
+        &copy; Thinkific
+      </div>
+
+    </div>
+  </footer>
+{% endif %}
+
+{% if portal.current_tab == "home" or portal.current_page == "submit_ticket" %}
+  <script>
+    jQuery(document).ready(function() {
+        //caches a jQuery object containing the header element
+        var header = jQuery(".header--white");
+        jQuery(window).on('scroll', function() {
+            var scroll = jQuery(window).scrollTop();
+            
+            if (scroll >= 70) {
+              header.addClass("is-visible");
+            } else {
+              header.removeClass("is-visible");
+            }
+        });
+    });
+  </script>
+{% endif %}

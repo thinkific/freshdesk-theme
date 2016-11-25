@@ -1,0 +1,60 @@
+{% if portal.has_solutions %}
+<section class="feature-links">
+  <div class="feature-links__inner">
+    {% assign category_names = "Getting Started,Your Account,Training & Community" | split:"," %} 
+    {% for category in portal.solution_categories %}
+      {% if category_names contains category.name %}
+        <a href="{{ category.url }}" class="feature-links__card feature-{{ category.name | downcase }}">
+            <h3 class="feature-links__header">
+              {{ category.name }}
+            </h3>
+            <h4 class="feature-links__description">
+              {{ category.description }}
+            </h4>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="popular-topics">
+  <div class="popular-topics__inner">
+    <h3 class="main-section-title">
+      Popular Topics
+    </h3>
+    <div class="popular-topics__list">
+      {% assign count = 0 %}      
+        {% for category in portal.solution_categories %}
+          {% for folder in category.folders %}
+            {% for article in folder.articles %}
+              {% for tag in article.tags %}
+                  {% if tag.name == 'popular' %}
+                    {% assign count = count | plus: 1  %}
+                    {% if count <= 6 %}
+                      <div class="popular-topics__item">
+                        <h3 class="popular-topics__item-title">
+                          <a href="{{ article.url }}">
+                            {{ article.title }}
+                          </a>
+                        </h3>
+                        <p class="popular-topics__item-description">
+                          {{ article.body_plain | truncate: 100 }}
+                          <a href="{{ article.url }}" class="popular-topics__item-link">
+                            Read&nbsp;&#8594;
+                          </a>
+                        </p>                                          
+                      </div>
+                    {% endif %}
+                  {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+    </div>
+    <a href="{{ portal.solutions_home_url }}" class="x-btn x-btn-primary">
+      View All Articles
+    </a>
+  </div>
+</section>
+

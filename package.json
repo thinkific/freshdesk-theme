@@ -1,0 +1,16 @@
+{
+  "name": "bs-recipes-server",
+  "version": "1.0.0",
+  "description": "Proxy example + injecting custom css file",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "build:css": "node-sass --include-path ./lib/bourbon --include-path ./lib/neat --include-path ./node_modules -o ./app/static ./src/",
+    "watch:css": "npm run build:css && npm run build:css -- -w"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "browser-sync": "^2.11.2",
+    "node-sass": "^3.12.5"
+  }
+}

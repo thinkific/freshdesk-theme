@@ -1,0 +1,936 @@
+@import "bourbon";
+@import "neat";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+// =============================================================================
+// Colours
+// =============================================================================
+
+$media-mobile-tablet: new-breakpoint(max-width 970px);
+$media-mobile: new-breakpoint(max-width 768px);
+
+// =============================================================================
+// Colours
+// =============================================================================
+
+$basewhite: #ffffff;
+$basegrey: #71767a;
+$thinkblue: #1b9eea;
+$thinkgreen: #36c69c;
+$thinkpurple: #645ab1;
+
+$border-color: #eaeef2;
+
+$linkcolor: $thinkpurple;
+
+$base-transition-time: .15s;
+
+// =============================================================================
+// Body
+// =============================================================================
+
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: $basewhite;  
+  color: $basegrey;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.site-content-container {
+  @include outer-container;
+  margin-top: 90px;
+}
+
+.site-content-container__body {
+  padding: 30px 0 60px;
+  position: relative;
+}
+
+.flex-container {
+  @include display(flex);
+}
+
+// =============================================================================
+// Typography
+// =============================================================================
+
+
+h1, h2, h3, h4, h5, h6, p {
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+h1, 
+.h1 {
+  font-size: 3.815em;
+}
+
+h2, 
+.h2 {
+  font-size: 3.052em;
+}
+
+h3, 
+.h3 {
+  font-size: 2.441em;
+}
+
+h4, 
+.h4 {
+  font-size: 1.953em;
+}
+
+h5, 
+.h5 {
+  font-size: 1.563em;
+}
+
+h6, 
+.h6 {
+  font-size: 1.25em;
+  text-transform: inherit;
+}
+
+p {
+  font-size: 1em;
+}
+
+a {
+  cursor: pointer;
+  color: $linkcolor;
+
+  &:hover {
+    @include transition-property(color);
+    @include transition-duration($base-transition-time);
+    color: $basegrey;
+    text-decoration: none;
+  }
+}
+
+.main-section-title {
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// =============================================================================
+// Buttons
+// =============================================================================
+
+.x-btn, 
+.btn {
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-weight: bold;
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  background-image: none;
+
+  &:hover {
+    @include transition-property(all);
+    @include transition-duration($base-transition-time);
+    @include transform(translateY(-2px));
+    text-shadow: none;
+  }
+
+  &:hover, 
+  &:active,
+  &:focus {
+    text-decoration: none !important;
+  }
+}
+
+.x-btn-sm {
+  padding: 6px 18px;
+  font-size: 14px !important;
+}
+
+.x-btn-primary, 
+.btn-primary {
+  background: $thinkgreen;
+  color: $basewhite;
+  font-size: 15px;
+  display: inline-block;
+
+  &:hover {
+    background: lighten($thinkgreen, 5%);
+    color: $basewhite;
+  }
+}
+
+// =============================================================================
+// Forms
+// =============================================================================
+
+input[type="text"], 
+input[type="email"],
+input[type="password"]{
+  border: 1px solid lighten($basegrey, 30%);
+  box-shadow: none;
+  padding: 10px 15px;
+  font-size: 16px;
+
+  &:focus {
+    @include placeholder {
+      @include transition(all $base-transition-time ease);
+      opacity: 0.6;
+    }
+    border: 1px solid $thinkblue;
+    box-shadow: none;
+  }
+}
+
+.redactor_box {
+  border: 1px solid lighten($basegrey, 30%);
+  border-radius: 3px;
+}
+
+.control-group label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+// =============================================================================
+//  Header
+// =============================================================================
+
+.header {
+  @include transition(all 0.5s ease);
+  position: absolute;
+  width: 100%;  
+  padding: 15px 20px;
+
+  .flex-container {
+    @include align-items(center);
+  }
+}
+
+.header-tabs__link {
+  font-size: 16px;
+  color: $basewhite;
+
+  &.active,
+  &:hover,
+  &:active {
+    color: $basewhite;
+    text-decoration: underline;
+  }
+}
+
+.header__logo {
+  @include flex-basis(100px);
+  min-width: 0;
+  margin-right: 50px;
+
+  .portal-img {
+    display: block;
+  }
+
+  .portal-logo {
+    @include clearfix;
+    display: block;
+    float: none;
+    margin: 0;    
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100px;
+  }
+}
+
+// Header: Search
+// ---------------
+
+.header-search {
+  @include display(flex);
+  @include flex(1 1 auto);
+  @include justify-content(center);
+
+  .header-search-input {
+    width: 250px;
+    padding: 9px 20px;
+    margin: 0;
+  }
+}
+
+// Header: main nav links
+// ---------------
+
+.header__site-nav {
+  @include flex(0 0 auto);
+
+  .header-tabs__link + .header-tabs__link {
+    margin-left: 15px;
+  }
+}
+
+// Header: Sign in nav
+// ---------------
+
+.header__account-nav {
+  @include flex(0 0 auto);
+  text-align: right;
+  margin-left: auto;
+
+  .welcome {
+    display: none;
+  }
+
+  .header-tabs__link + .header-tabs__link,
+  .x-btn {
+    margin-left: 15px;
+  }
+}
+
+
+// Header: Header white 
+// ---------------
+
+.header--white {
+  @include transition(all 0.5s ease);
+  display: none;  
+  position: fixed;
+  top: 0;
+  margin-top: -70px;
+  background: $basewhite;  
+  box-shadow: 0 0 15px 0 rgba($basegrey, 0.14);  
+  border-bottom: 1px solid $border-color;
+  z-index: 1000;
+
+  .header-tabs__link {
+    color: $basegrey;
+
+    &.active,
+    &:hover,
+    &:active {
+      color: $basegrey;
+    }
+  }
+
+  .x-btn {
+    color: $basewhite;
+  }
+
+  &.is-visible {
+    @include transition(all 0.5s ease);
+    margin-top: 0;
+    display: block;
+  }
+}
+
+// =============================================================================
+//  Footer
+// =============================================================================
+
+.page-footer {
+  border-top: 1px solid $border-color;
+  padding: 80px;
+  margin-top: 30px;
+
+  @include media($media-mobile) {
+    padding: 40px 50px;
+  }
+}
+
+.page-footer__inner {
+  @include outer-container;
+}
+
+.page-footer__column {
+  @include span-columns(3);
+  @include omega(4n);
+
+  @include media($media-mobile) {
+    @include span-columns(12);
+    @include shift(0);
+    margin-bottom: 20px;
+  }
+
+  .column-header {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  a {
+    color: $basegrey;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 10px;
+
+    &:hover {
+      color: $thinkpurple;
+      text-decoration: underline;
+    }
+  }
+}
+
+.page-footer__copyright {
+  @include span-columns(12);
+  display: block;
+  padding-top: 60px;
+  font-size: 12px;
+  color: lighten($basegrey, 10%);
+}
+
+
+
+// =============================================================================
+//  Breadcrumb
+// =============================================================================
+
+.breadcrumb {
+  margin-bottom: 20px;
+  display: block;
+  padding-bottom: 15px;
+  font-size: 14px;
+
+  a {
+    color: $linkcolor;
+
+    &:hover {
+      color: $thinkpurple;
+    }
+  }
+
+  & a:before, 
+  & span:before {
+    color: $basegrey;
+  }
+}
+
+// =============================================================================
+//  Search Hero
+// =============================================================================
+
+.search-hero {
+  @include linear-gradient(50deg, $thinkblue 0%, $thinkpurple 100%);
+  color: $basewhite;
+  text-align: center;
+
+  .hc-search-input {
+    width: 100%;
+    float: none;
+
+    label {
+      display: none;
+    }
+
+    input.ui-autocomplete-input {
+      @include transition-property(all);
+      @include transition-duration(80ms);
+      padding: 20px 40px;
+      box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
+      border: none;
+      height: inherit;
+      opacity: 0.9;
+      border-radius: 3px;
+      font-size: 16px;
+
+      &:focus {      
+        @include transform(scale(1.1));
+        opacity: 1;
+        box-shadow: 0px 9px 22px 0px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    input.ui-autocomplete-input:focus {
+      @include placeholder {
+        @include transition(all $base-transition-time ease);
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .hc-search-form {
+    @include span-columns(6);
+    @include shift(3);
+    margin-bottom: 12px;
+
+    @include media($media-mobile) {
+      @include span-columns(12);
+      @include shift(0);
+    }
+  }
+}
+
+// Search Hero: sizes 
+// ------------------
+
+.search-hero--large {
+  padding: 200px 0 180px;
+
+  @include media($media-mobile) {
+    padding: 120px 20px 80px;
+  }
+}
+
+.search-hero--small {
+  padding: 100px 0 80px;
+}
+
+
+.hc-search-button {
+  display: none;
+}
+
+.search-hero__form-container {
+  @include outer-container;
+}
+
+.search-hero__title {
+  font-weight: 200;
+  font-size: 2.8em;
+  margin-bottom: 40px;
+
+  @include media($media-mobile) {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+}
+
+.search-hero__popular-searches {
+  @include span-columns(6);
+  @include shift(3);
+  font-size: 13px;
+
+  a {
+    color: #ffffff;
+  }
+
+  @include media($media-mobile) {
+    @include span-columns(12);
+    @include shift(0);
+  }
+}
+
+// =============================================================================
+//  Home Page
+// =============================================================================
+
+// Home Page: Feature Links
+// ----------------
+
+.feature-links {
+  background: #eaeef2;
+  padding: 90px 80px;
+
+  @include media($media-mobile-tablet) {
+    padding: 40px 50px;
+  }  
+
+  @include media($media-mobile) {
+    padding: 40px 20px;
+  }
+}
+
+.feature-links__inner {
+  @include outer-container;
+  @include display(flex);
+
+  @include media($media-mobile) {
+    display: block;
+  }
+}
+
+.feature-links__card {
+  @include flex(1);
+  @include span-columns(4);
+  @include transition-property(all);
+  @include transition-duration($base-transition-time);  
+  background: $basewhite;
+  padding: 50px 30px;
+  border-radius: 3px;
+  text-align: center;
+  color: $basegrey;
+  box-shadow: 1px 1px 0 rgba($basegrey, 0.15);
+
+  &:hover, 
+  &:active, 
+  &:focus {
+    @include transform(translateY(-2px));
+    text-decoration: none;
+    color: $basegrey;
+    box-shadow: 0px 5px 18px 0px rgba($basegrey, 0.15);
+
+    .feature-links__header{
+      color: $basegrey;
+    }
+  }
+
+  @include media($media-mobile) {
+    @include span-columns(12);
+    margin-bottom: 20px; 
+    padding: 30px 30px;
+  }
+}
+
+.feature-links__header {
+  margin-bottom: 10px;
+  color: $thinkpurple;
+  font-size: 26px;
+}
+
+.feature-links__description {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+
+// Home Page: Popular Links
+// ----------------
+
+.popular-topics {
+  padding: 100px 80px;
+
+  @include media($media-mobile-tablet) {
+    padding: 50px 50px;
+  }
+}
+
+.popular-topics__inner {
+  @include outer-container;
+}
+
+.popular-topics__list {
+  @include span-columns(12);
+  @include display(flex);
+  @include flex-wrap(wrap);
+
+  @include media($media-mobile) {
+    display: block;
+  }
+}
+
+.popular-topics__item {
+  @include flex(0 1 50%);
+  margin-bottom: 30px;
+  padding-right: 60px;
+
+  @include media($media-mobile) {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+
+    & + & {
+      padding-top: 30px;
+      border-top: 1px solid $border-color;
+    }
+  }
+}
+
+.popular-topics__item-title {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+
+// =============================================================================
+//  Article
+// =============================================================================
+
+
+.page--article-content {
+  @include span-columns(8);
+  @include flex(1);
+}
+
+.site-sidebar {
+  @include span-columns(4);
+  @include flex(1);
+  max-width: 350px;
+  border-left: 1px solid $border-color;
+  padding: 40px;
+}
+
+
+.article-heading {
+  margin-bottom: 30px;
+
+  .solution-print-icon {
+    margin-top: 24px;
+    margin-left: 15px;
+    float: none;
+  }
+}
+
+.article__author, 
+.article__modified-date {
+  margin-bottom: 0;
+}
+
+.article__body {
+  padding-top: 30px;
+  margin-bottom: 40px;
+
+  p {
+    color: $basegrey !important;
+    font-size: 16px !important;
+    line-height: 1.5;
+    text-align: left !important;
+  }
+
+}
+
+// Not actually the author section, it's a survey for users about
+// the usefulness of the article
+#article-author {
+  padding-top: 10px;
+}
+
+
+// This is usually just date, or 'last edited' information. Shows up all over.
+.article-meta-data {
+  font-size: 13px;
+  color: lighten($basegrey, 15%);
+}
+
+
+// =============================================================================
+//  Narrow pages, man.
+// =============================================================================
+
+.page--solutions-folder-article-list,
+.page--folder-article-list,
+.page--search-results,
+.page--solutions-home {
+  @include span-columns(10);
+  @include shift(1);
+}
+
+// =============================================================================
+//  Article list
+// =============================================================================
+
+.article-list-container {
+  @include span-columns(6);
+  @include omega(2n);
+  margin-bottom: 60px;
+
+  .see-more {
+    margin-left: 3px;
+    font-size: 16px;
+    color: $linkcolor;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      content: '\02192';
+      padding-left: 5px;
+    }
+  }
+}
+
+.article-list__folder-title {
+  font-size: 20px;
+
+  a {
+    color: $basegrey;
+    font-weight: bold;
+  }
+
+  .item-count {
+    &:before {
+      content: '(';
+    }
+
+    &:after {
+      content: ')';
+    }
+  }
+}
+
+.x-article-list {
+  padding: 0;
+  margin: 0 0 20px 3px;
+  color: $basegrey;
+  list-style-position: inside;
+}
+
+.x-article-list__item {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+// Article Lists: List of articles in a folder
+// -------------------
+
+.folder-article-list__item {
+  border-top: 1px solid $border-color;
+  padding: 30px 35px 30px 15px;
+
+
+  &:hover {
+    background: $border-color;
+  }
+}
+
+.folder-article-list__title {
+  margin-bottom: 10px;
+}
+
+.folder-article-list__description {
+  margin-bottom: 10px;
+}
+
+// =============================================================================
+//  Search Results
+// =============================================================================
+
+.page--search-results {
+
+  .nav-pills {
+    padding-bottom: 15px;
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 30px;
+  }
+}
+
+.search-results-list {
+  padding: 0;
+  margin: 0;
+}
+
+.search-results-list__item {
+  list-style: none;
+  padding-top: 20px;
+
+  .label {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+.search-results-list__item + .search-results-list__item {
+  border-top: 1px solid $border-color;
+}
+
+.search-results-list__title {
+  margin-bottom: 10px;
+}
+
+// =============================================================================
+//  Solutions Home
+// =============================================================================
+
+
+// Solutions home: Category level
+// -------------
+
+.solutions-home__category {
+  @include outer-container;
+  margin-bottom: 20px;
+}
+
+.solutions-home__category-title {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 40px;
+
+  a {
+    color: $basegrey;
+  }
+}
+
+// Solutions home: Folder and article level
+// -------------
+
+.solutions-home__folder-list {
+  @include span-columns(12);
+}
+
+.solutions-home__article-list {
+  @include span-columns(6);
+  @include omega(2n);
+  margin-bottom: 60px;
+
+  // Doing this because stupid freshdesk uses the same list in two places, but
+  // one is available to edit, and the other isn't.
+  ul {
+    @extend .x-article-list;
+  }
+
+  li {
+    @extend .x-article-list__item;
+  }
+
+  .see-more {
+    margin-left: 3px;
+    font-size: 16px;
+    color: $linkcolor;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      content: '\02192';
+      padding-left: 5px;
+    }
+  }
+}
+
+
+// =============================================================================
+//  Submit a ticket
+// =============================================================================
+
+.page--new-ticket {
+  @include outer-container;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.new-ticket__inner {
+  @include span-columns(8);
+  @include shift(2);
+}
+
+.form-actions {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+
+// =============================================================================
+//  Submit a ticket
+// =============================================================================
+
+.page--login {
+  @include outer-container;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.login-form-container {
+  @include span-columns(6);
+  @include shift(3);
+}
+
+.new_user_session {
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+  }
+}
+
+
