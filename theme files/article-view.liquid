@@ -1,6 +1,6 @@
 <div class="flex-container">
   
-  <section class="site-content-container__body page--article-content" id="article-show-{{ article.id }}">
+  <section class="page--article-content flex-container flex-1" id="article-show-{{ article.id }}">
       <div class="breadcrumb">
         <a href="{{ portal.solutions_home_url }}"> {% translate portal.solutions_home %} </a>
         <a href="{{ article.category.url }}">{{ article.category.name | h}}</a>
@@ -25,6 +25,32 @@
         {% translate portal.article.modified_on %} {{ article.modified_on | short_day_with_time }}
       </h5>
 
+      {% for tag in article.tags %}
+         {% if tag.name contains 'starter' or tag.name contains 'essentials' or tag.name contains 'business' or tag.name contains 'advanced' %}
+            {% assign show_plans = true %}
+         {% endif %}
+         {% case tag.name %}
+           {% when 'starter' %}
+                {% assign in_starter = true %}
+           {% when 'essentials' %}
+                {% assign in_essentials = true %}
+           {% when 'business' %}
+                {% assign in_business = true %}
+           {% when 'advanced' %}
+                {% assign in_advanced = true %}
+         {% endcase %}  
+      {% endfor %}
+      
+      {% if show_plans %}
+        <div class="well plans-well for-not-mobile">
+          <span class="plans-title">Applicable plans</span>
+          <span class="{% if in_starter %} label-selected {% endif %} label ">Starter</span>
+          <span class="{% if in_essentials %} label-selected {% endif %} label ">Essentials</span>
+          <span class="{% if in_business %} label-selected {% endif %} label ">Business</span>
+          <span class="{% if in_advanced %} label-selected {% endif %} label ">Advanced</span>       
+        </div>
+      {% endif %}
+
       {% comment %}
       <div class="article__tags">
         {% for tag in article.tags %}
@@ -42,8 +68,9 @@
 
   </section>
 
-  <section class="site-sidebar">
-    {{ article | related_articles: 10, 'related_articles' }}
+  <section class="site-sidebar sidebar--more-articles">
+    {{ article.folder | more_articles_in_folder }}
+    {{ article.folder | article_list: 10, article }}
   </section>
 
 </div>

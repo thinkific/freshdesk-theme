@@ -1,19 +1,32 @@
-<div class="page-wrapper">
+<div class="page-wrapper page-wrapper--{{ portal.current_tab }}">
+  <div class="page-canvas">
 
   <!-- Header -->
   {{ header }}
 
+  <!-- Mobile Header -->
+  {% if portal.current_tab == 'home' %}
+    {% assign mobile_header_home = "mobile-header--home" %}
+  {% endif %}
+
+  <div class="mobile-header {{ mobile_header_home }}">
+    <a href="/" class="mobile-header__logo">
+       <img src="{{ portal.logo_url }}" alt="{{ portal.name }} logo">
+    </a>
+    <div class="mobile-nav-toggle">
+      Menu
+    </div>
+  </div>
+
   <!-- Search box -->
+  <!-- this assign was left over for when there was a small header, it's still
+  in the css if we ever want to use it -->
   {% if portal.current_tab == "home" %}
     {% assign hero_large = "search-hero--large" %}
   {% endif %}
 
-  {% if portal.current_page == "submit_ticket" %}
-    {% assign hero_small = "search-hero--small" %}
-  {% endif %}
-  
-  {% if portal.current_tab == "home" or portal.current_page == "submit_ticket" %}
-    <section class="search-hero {{ hero_large }} {{ hero_small }}">
+  {% if portal.current_tab == "home" %}
+    <section class="search-hero {{ hero_large }}">
       <h1 class="search-hero__title">
         {% translate header.help_center %}
       </h1>
@@ -37,9 +50,8 @@
   <!-- Notification Messages -->
   {{ page_message }}
 
-
   <!-- Change the layout wrapper so section on home can reach the edge of the page -->
-    {% if portal.current_tab == 'home' or portal.current_page == "submit_ticket" %}
+  {% if portal.current_tab == 'home' %}
     {{ content_for_layout }}
   {% else %}
     <div class="site-content-container">   
@@ -50,4 +62,97 @@
   <!-- Footer -->
   {{ footer }}
 
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-search">
+      <form class="mobile-search-form" 
+            autocomplete="off" 
+            action="/support/search" 
+            id="header-search-form">
+        <input placeholder="Enter your search term here..." 
+               type="text" 
+               name="term" 
+               class="mobile-search-input" 
+               value="" 
+               data-max-matches="10" 
+               id="mobile-search-input" 
+               autocomplete="off">
+        <input type="hidden" 
+               name="authenticity_token" 
+               value="2y6ez+hc/laSH0c2IFSvMcUD8E57dN+icWLZ+ocerZo=">
+      </form>
+    </div>
+
+    <div class="mobile-nav-links">
+      
+      <nav class="header__site-nav" >
+        <div class="nav-link" id="header-tabs">
+          <a href="/support/home" class="mobile-nav-links__item">Home</a>  
+          <a href="/support/solutions" class="mobile-nav-links__item">Solutions</a>
+          <a href="/support/discussions" class="mobile-nav-links__item">Forums</a>
+        </div>
+      </nav>
+
+      <a href="/support/tickets/new" class="mobile-nav-links__item">Contact us</a>
+
+      {% if portal.has_user_signed_in == true %}
+        <a href="/support/profile/edit" class="mobile-nav-links__item">Edit Profile</a>
+        <a href="/logout" class="mobile-nav-links__item">Sign Out</a>
+      {% else %}
+        <a href="/support/login" class="mobile-nav-links__item">Sign in</a>      
+      {% endif %}       
+    </div>
+
+    {% if portal.has_user_signed_in == true %}
+      <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary">
+        New Ticket
+      </a> 
+    {% else %}
+      <a href="https://www.thinkific.com/signin/" class="x-btn x-btn-primary">
+        Get Started Free
+      </a>
+    {% endif %} 
+  </nav>
+
+  </div>
 </div>
+
+<!-- Show a different nav on scroll on pages with a search header -->
+{% if portal.current_tab == 'home' %}
+  <script>
+    jQuery(document).ready(function() {
+
+        //caches a jQuery object containing the header element
+        var header = jQuery(".header--white");
+        jQuery(window).on('scroll', function() {
+            var scroll = jQuery(window).scrollTop();
+            
+            if (scroll >= 70) {
+              header.addClass("is-visible");
+            } else {
+              header.removeClass("is-visible");
+            }
+        });
+    });
+  </script>
+{% endif %}
+
+<!-- Mobile menu -->
+<script>
+  jQuery(function() {
+    jQuery('.mobile-nav-toggle').click(function() {
+      // Calling a function in case you want to expand upon this.
+      toggleNav();
+    });
+  });
+
+  function toggleNav() {
+    if (jQuery('.page-wrapper').hasClass('show-nav')) {
+      // Do things on Nav Close
+      jQuery('.page-wrapper').removeClass('show-nav');
+    } else {
+      // Do things on Nav Open
+      jQuery('.page-wrapper').addClass('show-nav');
+    }
+  }
+</script>

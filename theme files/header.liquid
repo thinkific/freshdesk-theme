@@ -1,6 +1,6 @@
 {% if  portal.current_page != 'csat_survey' %}  
   
-  {% unless portal.current_tab == "home" or portal.current_page == "submit_ticket"  %}
+  {% unless portal.current_tab == 'home' %}
     {% assign is_visible = 'is-visible' %}
   {% endunless %}
 
@@ -10,16 +10,10 @@
         <img src="https://s3.amazonaws.com/thinkific/file_uploads/565/images/513/a4b/fd8/thinkific-logo.png" alt="{{ portal.name }} logo">
       </a>
       <nav class="header__site-nav" >
-        {% if portal.tabs.size > 0 %}
-          <a data-toggle-dom="#header-tabs" href="#" data-animated="true" class="mobile-icon-nav-menu show-in-mobile"></a>
-          <div class="nav-link" id="header-tabs">
-            {% for tab in portal.tabs %}
-              {% if tab.url %}
-                <a href="{{tab.url}}" class="header-tabs__link {% if tab.tab_type == portal.current_tab %}active{% endif %}">{{ tab.label }}</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
+        <div class="nav-link" id="header-tabs"> 
+          <a href="/support/solutions" class="header-tabs__link">Solutions</a>
+          <a href="/support/discussions" class="header-tabs__link ">Forums</a>
+        </div>
       </nav>
       <div class="header-search">
         <form class="header-search-form" 
@@ -39,41 +33,83 @@
                  value="2y6ez+hc/laSH0c2IFSvMcUD8E57dN+icWLZ+ocerZo=">
         </form>
       </div>
-      <nav class="header__account-nav">
-        <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
-        <a href="/support/login" class="header-tabs__link">Sign in</a>
-        <a href="https://www.thinkific.com/signin/" class="x-btn x-btn-primary x-btn-sm">
-          Get Started Free
-        </a>
-      </nav>
-    </div>
-  </header>
 
-  {% if portal.current_tab == "home" or portal.current_page == "submit_ticket" %}
-    <header class="header">
-      <div class="flex-container">
-        <a href="/" class="header__logo">
-          <img src="{{ portal.logo_url }}" alt="{{ portal.name }} logo">
-        </a>
-        <nav class="header__site-nav" >
-          {% if portal.tabs.size > 0 %}
-            <a data-toggle-dom="#header-tabs" href="#" data-animated="true" class="mobile-icon-nav-menu show-in-mobile"></a>
-            <div class="nav-link" id="header-tabs">
-              {% for tab in portal.tabs %}
-                {% if tab.url %}
-                  <a href="{{tab.url}}" class="header-tabs__link {% if tab.tab_type == portal.current_tab %}active{% endif %}">{{ tab.label }}</a>
-                {% endif %}
-              {% endfor %}
+      <nav class="header__account-nav">
+        {% if portal.has_user_signed_in == true %}
+          <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary x-btn-sm">
+            New Ticket
+          </a>
+
+          <div class="header__account-nav--logged-in">
+            {% if portal.user.profile_url != false %}   
+              <img class="profile-picture" src="{{ portal.user.profile_url }}" />
+            {% else %}
+              <img class="profile-picture" src="/images/fillers/profile_blank_thumb.gif" />
+            {% endif %}
+            <div class="dropdown" id="action-bar-toggle">
+              <a class="dropdown-toggle profile-name" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <a href="/support/profile/edit">Edit Profile</a>
+                <a href="/logout">Sign Out</a>
+              </ul>
             </div>
-          {% endif %}
-        </nav>
-        <nav class="header__account-nav">
+          </div>
+        {% else %}
           <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
           <a href="/support/login" class="header-tabs__link">Sign in</a>
           <a href="https://www.thinkific.com/signin/" class="x-btn x-btn-primary x-btn-sm">
             Get Started Free
           </a>
+        {% endif %}
+      </nav>
+
+    </div>
+  </header>
+
+  {% if portal.current_tab == 'home' %}
+    <header class="header">
+      <div class="flex-container">
+        <a href="/" class="header__logo">
+          <img src="{{ portal.logo_url }}" alt="{{ portal.name }} logo">
+        </a>
+
+        <nav class="header__site-nav" >
+          <div class="nav-link" id="header-tabs"> 
+            <a href="/support/solutions" class="header-tabs__link">Solutions</a>
+            <a href="/support/discussions" class="header-tabs__link ">Forums</a>
+          </div>
         </nav>
+
+        <nav class="header__account-nav">
+          {% if portal.has_user_signed_in == true %}
+
+            <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary x-btn-sm">
+              New Ticket
+            </a>
+
+            <div class="header__account-nav--logged-in">
+              {% if portal.user.profile_url != false %}   
+                <img class="profile-picture" src="{{ portal.user.profile_url }}" />
+              {% else %}
+                <img class="profile-picture" src="/images/fillers/profile_blank_thumb.gif" />
+              {% endif %}
+              <div class="dropdown" id="action-bar-toggle">
+                <a class="dropdown-toggle profile-name" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <a href="/support/profile/edit">Edit Profile</a>
+                  <a href="/logout">Sign Out</a>
+                </ul>
+              </div>
+            </div>
+          {% else %}
+            <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
+            <a href="/support/login" class="header-tabs__link">Sign in</a>
+            <a href="https://www.thinkific.com/signin/" class="x-btn x-btn-primary x-btn-sm">
+              Get Started Free
+            </a>
+          {% endif %}
+        </nav>
+
       </div>
     </header>
   {% endif %}

@@ -7,3 +7,19 @@
 <!-- returns name of the portal -->
 
 {{portal.name|h}}
+
+
+
+<!-- ////////////////// -->
+
+<nav class="header__site-nav" >
+  {% if portal.tabs.size > 0 %}
+    <div class="nav-link" id="header-tabs">
+      {% for tab in portal.tabs %}
+        {% if tab.url %}
+          <a href="{{tab.url}}" class="header-tabs__link {% if tab.tab_type == portal.current_tab %}active{% endif %}">{{ tab.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</nav>

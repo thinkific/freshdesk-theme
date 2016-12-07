@@ -45,21 +45,3 @@
     </div>
   </footer>
 {% endif %}
-
-{% if portal.current_tab == "home" or portal.current_page == "submit_ticket" %}
-  <script>
-    jQuery(document).ready(function() {
-        //caches a jQuery object containing the header element
-        var header = jQuery(".header--white");
-        jQuery(window).on('scroll', function() {
-            var scroll = jQuery(window).scrollTop();
-            
-            if (scroll >= 70) {
-              header.addClass("is-visible");
-            } else {
-              header.removeClass("is-visible");
-            }
-        });
-    });
-  </script>
-{% endif %}

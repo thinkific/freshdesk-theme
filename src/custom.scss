@@ -25,6 +25,7 @@ $linkcolor: $thinkpurple;
 
 $base-transition-time: .15s;
 
+
 // =============================================================================
 // Body
 // =============================================================================
@@ -43,18 +44,63 @@ body {
   font-size: 16px;
 }
 
+.page-wrapper {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  // For the off canvas mobile nav
+  &.show-nav .page-canvas {
+    @include transform(translateX(-250px));
+  }
+}
+
+// For the off canvas mobile nav
+.page-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%; 
+
+  @include media($media-mobile-tablet) {
+    @include transform(translateX(0));
+    @include transition(all $base-transition-time ease);
+  } 
+}
+
 .site-content-container {
   @include outer-container;
-  margin-top: 90px;
+  margin-top: 120px;
+  margin-bottom: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  @include media($media-mobile-tablet) {
+    margin-top: 60px;
+  }
 }
 
 .site-content-container__body {
-  padding: 30px 0 60px;
+  @include span-columns(10);
+  @include shift(1);
   position: relative;
+
+  @include media($media-mobile-tablet) {
+    @include span-columns(12);
+    @include shift(0);
+  }
 }
 
 .flex-container {
   @include display(flex);
+
+  @include media($media-mobile-tablet) {
+    display: block;
+  }
+}
+
+.flex-1 {
+  @include flex(1);
 }
 
 // =============================================================================
@@ -71,16 +117,28 @@ h1, h2, h3, h4, h5, h6, p {
 h1, 
 .h1 {
   font-size: 3.815em;
+
+  @include media($media-mobile) {
+    font-size: 3.052em;
+  }
 }
 
 h2, 
 .h2 {
   font-size: 3.052em;
+
+  @include media($media-mobile) {
+    font-size: 2.441em;
+  }
 }
 
 h3, 
 .h3 {
   font-size: 2.441em;
+
+  @include media($media-mobile) {
+    font-size: 1.953em;
+  }
 }
 
 h4, 
@@ -137,6 +195,7 @@ a {
   font-weight: bold;
   box-shadow: none;
   text-shadow: none;
+  text-align: center;
   border: none;
   background-image: none;
 
@@ -179,9 +238,10 @@ a {
 input[type="text"], 
 input[type="email"],
 input[type="password"]{
-  border: 1px solid lighten($basegrey, 30%);
-  box-shadow: none;
   padding: 10px 15px;
+  border: 1px solid lighten($basegrey, 30%);
+  box-shadow: none;  
+  border-radius: 3px;
   font-size: 16px;
 
   &:focus {
@@ -216,6 +276,10 @@ input[type="password"]{
 
   .flex-container {
     @include align-items(center);
+  }
+
+  @include media($media-mobile-tablet) {
+    display: none;
   }
 }
 
@@ -261,6 +325,7 @@ input[type="password"]{
   @include display(flex);
   @include flex(1 1 auto);
   @include justify-content(center);
+  padding: 0 5px;
 
   .header-search-input {
     width: 250px;
@@ -284,7 +349,9 @@ input[type="password"]{
 // ---------------
 
 .header__account-nav {
+  @include display(flex);
   @include flex(0 0 auto);
+  @include align-items(center);
   text-align: right;
   margin-left: auto;
 
@@ -298,6 +365,65 @@ input[type="password"]{
   }
 }
 
+// Header: Logged in
+// ---------------
+
+
+.header__account-nav--logged-in {
+  @include display(flex);
+  @include align-items(center);
+  padding-left: 15px;
+
+  .dropdown-menu {
+    right: -4px;
+    left: initial;
+    top: 36px;
+    border-color: $border-color;
+    border-radius: 3px;
+    padding: 10px 0;
+
+    a {
+      color: $basegrey !important;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.profile-picture {
+  border-radius: 500px;
+  margin-right: 10px;
+  height: 35px;
+}
+
+.profile-name {
+  color: $basewhite;
+  margin-right: 5px;
+
+  &:hover, 
+  &:active, 
+  &:focus {
+    color: $basewhite;
+    text-decoration: underline;
+  }
+}
+
+.header--white .profile-name {
+  color: $basegrey;
+}
+
+.dropdown .caret {
+  border-top-color: #ffffff;
+  margin-top: 11px;
+}
+
+.header--white .dropdown .caret {
+  border-top-color: $basegrey;
+}
 
 // Header: Header white 
 // ---------------
@@ -312,6 +438,10 @@ input[type="password"]{
   box-shadow: 0 0 15px 0 rgba($basegrey, 0.14);  
   border-bottom: 1px solid $border-color;
   z-index: 1000;
+
+  @include media($media-mobile-tablet) {
+    display: none !important;
+  }
 
   .header-tabs__link {
     color: $basegrey;
@@ -334,6 +464,92 @@ input[type="password"]{
   }
 }
 
+// Header: Mobile nav
+// -------------
+
+.mobile-header {
+  @include linear-gradient(50deg, $thinkblue 0%, $thinkpurple 100%);
+  display: none;
+  padding: 15px 20px;
+
+  @include media($media-mobile-tablet) {
+    @include display(flex);
+    @include align-items(center);
+  }
+}
+
+.mobile-header--home {
+  background-image: none;
+  background-color: transparent;
+  position: absolute;
+  top: 0;  
+  width: 100%;
+  padding: 20px 20px 0;
+  box-shadow: none;
+  border-bottom: none;
+}
+
+.mobile-header__logo img {
+  width: 110px;
+  height: auto;
+}
+
+// Toggle button
+.mobile-nav-toggle {
+  @include flex(0 0 auto);
+  margin-left: auto;
+  display: none;
+  background: $basewhite;
+  border-radius: 3px;
+  padding: 3px 12px;
+  color: $thinkpurple;
+  cursor: pointer;
+
+  @include media($media-mobile-tablet) {
+    display: initial;
+  }
+}
+
+// The actual nav itself
+.mobile-nav {
+  display: none; 
+  position: absolute;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  padding: 20px;
+  background: #595f65;  
+  text-align: center;  
+
+  @include media($media-mobile-tablet) {
+    display: initial;
+  }
+}
+
+// Nav contents
+.mobile-nav-links {
+  margin-bottom: 30px;
+}
+
+.mobile-nav-links__item {
+  display: block;
+  font-size: 22px;
+  padding: 14px 0;
+  color: $basewhite;
+  cursor: pointer;
+
+  &.active {
+    text-decoration: underline;
+  }
+}
+
+.mobile-search-input {
+  border: 0 !important;
+  width: 100%;
+  margin-bottom: 20px !important;
+}
+
 // =============================================================================
 //  Footer
 // =============================================================================
@@ -342,9 +558,10 @@ input[type="password"]{
   border-top: 1px solid $border-color;
   padding: 80px;
   margin-top: 30px;
+  background: #ffffff;
 
   @include media($media-mobile) {
-    padding: 40px 50px;
+    padding: 40px 20px;
   }
 }
 
@@ -422,6 +639,8 @@ input[type="password"]{
   @include linear-gradient(50deg, $thinkblue 0%, $thinkpurple 100%);
   color: $basewhite;
   text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
 
   .hc-search-input {
     width: 100%;
@@ -441,6 +660,10 @@ input[type="password"]{
       opacity: 0.9;
       border-radius: 3px;
       font-size: 16px;
+
+      @include media($media-mobile) {
+        padding: 15px 20px;
+      }
 
       &:focus {      
         @include transform(scale(1.1));
@@ -462,6 +685,11 @@ input[type="password"]{
     @include shift(3);
     margin-bottom: 12px;
 
+    @include media($media-mobile-tablet) {
+      @include span-columns(10);
+      @include shift(1);
+    }
+
     @include media($media-mobile) {
       @include span-columns(12);
       @include shift(0);
@@ -473,17 +701,19 @@ input[type="password"]{
 // ------------------
 
 .search-hero--large {
-  padding: 200px 0 180px;
+  padding-top: 200px !important;
+  padding-bottom: 180px !important;
 
   @include media($media-mobile) {
-    padding: 120px 20px 80px;
+    padding-top: 120px !important;  
+    padding-bottom: 80px !important;
   }
 }
 
 .search-hero--small {
-  padding: 100px 0 80px;
+  padding-top: 100px; 
+  padding-bottom: 80px;
 }
-
 
 .hc-search-button {
   display: none;
@@ -523,20 +753,24 @@ input[type="password"]{
 //  Home Page
 // =============================================================================
 
+.page-wrapper--home {
+  section {
+    @include media($media-mobile-tablet) {
+      padding: 40px 50px;
+    }  
+
+    @include media($media-mobile) {
+      padding: 40px 20px;
+    }
+  }
+}
+
 // Home Page: Feature Links
 // ----------------
 
 .feature-links {
   background: #eaeef2;
   padding: 90px 80px;
-
-  @include media($media-mobile-tablet) {
-    padding: 40px 50px;
-  }  
-
-  @include media($media-mobile) {
-    padding: 40px 20px;
-  }
 }
 
 .feature-links__inner {
@@ -599,7 +833,7 @@ input[type="password"]{
   padding: 100px 80px;
 
   @include media($media-mobile-tablet) {
-    padding: 50px 50px;
+    padding: 50px 20px;
   }
 }
 
@@ -646,10 +880,12 @@ input[type="password"]{
 //  Article
 // =============================================================================
 
-
 .page--article-content {
   @include span-columns(8);
-  @include flex(1);
+
+  @include media($media-mobile-tablet) {
+    @include span-columns(12);
+  }
 }
 
 .site-sidebar {
@@ -657,9 +893,24 @@ input[type="password"]{
   @include flex(1);
   max-width: 350px;
   border-left: 1px solid $border-color;
-  padding: 40px;
-}
+  padding: 20px 0 20px 40px;
 
+  @include media($media-mobile-tablet) { 
+    @include span-columns(12);
+    border-top: 1px solid $border-color;
+    border-left: none;
+    max-width: initial;
+    margin-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #new-ticket-search h4 {
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid $border-color;
+  }
+}
 
 .article-heading {
   margin-bottom: 30px;
@@ -702,17 +953,29 @@ input[type="password"]{
   color: lighten($basegrey, 15%);
 }
 
+// Article: Sidebar 
+// -----------
 
-// =============================================================================
-//  Narrow pages, man.
-// =============================================================================
+.sidebar--more-articles {
+  .list-lead {
+    font-size: 1.25em;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
 
-.page--solutions-folder-article-list,
-.page--folder-article-list,
-.page--search-results,
-.page--solutions-home {
-  @include span-columns(10);
-  @include shift(1);
+  .folder-name {
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: inside;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li {
+    margin-bottom: 10px;
+  }
 }
 
 // =============================================================================
@@ -723,6 +986,10 @@ input[type="password"]{
   @include span-columns(6);
   @include omega(2n);
   margin-bottom: 60px;
+
+  @include media($media-mobile) {
+    @include span-columns(12);
+  }
 
   .see-more {
     margin-left: 3px;
@@ -742,6 +1009,7 @@ input[type="password"]{
 
 .article-list__folder-title {
   font-size: 20px;
+  padding-bottom: 10px;
 
   a {
     color: $basegrey;
@@ -832,7 +1100,6 @@ input[type="password"]{
 //  Solutions Home
 // =============================================================================
 
-
 // Solutions home: Category level
 // -------------
 
@@ -862,6 +1129,10 @@ input[type="password"]{
   @include omega(2n);
   margin-bottom: 60px;
 
+  @include media($media-mobile) {
+    @include span-columns(12);
+  }
+
   // Doing this because stupid freshdesk uses the same list in two places, but
   // one is available to edit, and the other isn't.
   ul {
@@ -890,18 +1161,15 @@ input[type="password"]{
 
 
 // =============================================================================
-//  Submit a ticket
+//  New ticket
 // =============================================================================
 
-.page--new-ticket {
-  @include outer-container;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
-.new-ticket__inner {
+.new-ticket__form {
   @include span-columns(8);
-  @include shift(2);
+
+  @include media($media-mobile-tablet) {
+    @include span-columns(12);
+  }
 }
 
 .form-actions {
@@ -911,19 +1179,44 @@ input[type="password"]{
 }
 
 
+// New Ticket: Sidebar 
+// --------------
+
+.page--new-ticket {
+  .site-sidebar {
+    margin-top: 50px;
+  }
+}
+
+.max-search-content {
+  max-height: initial;
+}
+
+// New Ticket: Thank you 
+// --------------
+
+.page--ticket-details {
+  padding: 50px 0;
+  text-align: center;
+
+  @include media($media-mobile-tablet) {
+    padding: 20px 0;
+  }
+}
+
+
 // =============================================================================
 //  Submit a ticket
 // =============================================================================
 
-.page--login {
-  @include outer-container;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
 .login-form-container {
   @include span-columns(6);
   @include shift(3);
+
+  @include media($media-mobile) {
+    @include span-columns(12);
+    @include shift(0);
+  }
 }
 
 .new_user_session {
