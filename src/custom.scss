@@ -1204,7 +1204,6 @@ input[type="password"]{
   }
 }
 
-
 // =============================================================================
 //  Submit a ticket
 // =============================================================================
@@ -1225,5 +1224,58 @@ input[type="password"]{
     width: 100%;
   }
 }
+
+// =============================================================================
+//  Forums
+// =============================================================================
+
+// Forum: Category 
+// -------------
+
+.page--forum-index {
+  @include outer-container;
+  @include span-columns(12);
+  @include display(flex);
+}
+
+.forum-category {
+  @include outer-container;
+  border-top: 1px solid $border-color;
+  margin-bottom: 20px;
+  padding: 20px;
+
+  &:nth-of-type(odd) {
+    background: lighten($border-color, 5%);
+  }
+}
+
+.forum-category__header {
+  color: $basegrey;
+}
+
+.forum-category__topics {
+  @include outer-container;
+}
+
+.forum-category__topics-list {
+  @include span-columns(6);
+  @include omega(2n);
+  border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+}
+
+.community-forums__discussions {
+  @include span-columns(9);
+}
+
+.community-forums__discussions-sidebar {
+  @include span-columns(3);
+  border-left: 1px solid red;
+}
+
+
+
+
 
 
