@@ -291,10 +291,10 @@ input[type="password"] {
     text-decoration: underline; }
 
 .header__logo {
-  -webkit-flex-basis: 100px;
-  -moz-flex-basis: 100px;
-  flex-basis: 100px;
-  -ms-flex-preferred-size: 100px;
+  -webkit-flex-basis: 125px;
+  -moz-flex-basis: 125px;
+  flex-basis: 125px;
+  -ms-flex-preferred-size: 125px;
   min-width: 0;
   margin-right: 50px; }
   .header__logo .portal-img {
@@ -310,7 +310,16 @@ input[type="password"] {
   .header__logo img {
     display: block;
     height: auto;
-    max-width: 100px; }
+    max-width: 125px; }
+  .header__logo:hover {
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+    transform: translateY(-2px); }
 
 .header-search {
   display: -webkit-box;
@@ -822,7 +831,7 @@ input[type="password"] {
   -moz-transition-duration: 0.15s;
   transition-duration: 0.15s;
   background: #ffffff;
-  padding: 50px 30px;
+  padding: 40px 30px;
   border-radius: 3px;
   text-align: center;
   color: #71767a;
@@ -838,6 +847,15 @@ input[type="password"] {
     text-decoration: none;
     color: #71767a;
     box-shadow: 0px 5px 18px 0px rgba(113, 118, 122, 0.15); }
+    .feature-links__card:hover .feature-links__image, .feature-links__card:active .feature-links__image, .feature-links__card:focus .feature-links__image {
+      -webkit-transition: all 0.15s ease;
+      -moz-transition: all 0.15s ease;
+      transition: all 0.15s ease;
+      -webkit-transform: translateY(-2px);
+      -moz-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
+      -o-transform: translateY(-2px);
+      transform: translateY(-2px); }
     .feature-links__card:hover .feature-links__header, .feature-links__card:active .feature-links__header, .feature-links__card:focus .feature-links__header {
       color: #71767a; }
   @media screen and (max-width: 768px) {
@@ -850,6 +868,11 @@ input[type="password"] {
       padding: 30px 30px; }
       .feature-links__card:last-child {
         margin-right: 0; } }
+
+.feature-links__image {
+  margin-bottom: 30px;
+  width: 200px;
+  height: auto; }
 
 .feature-links__header {
   margin-bottom: 10px;

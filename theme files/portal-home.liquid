@@ -1,19 +1,47 @@
 {% if portal.has_solutions %}
 <section class="feature-links">
   <div class="feature-links__inner">
-    {% assign category_names = "Getting Started,Your Account,Training & Community" | split:"," %} 
+    <!-- {% assign category_names = "Getting Started,Your Account,Training & Community" | split:"," %} 
     {% for category in portal.solution_categories %}
       {% if category_names contains category.name %}
         <a href="{{ category.url }}" class="feature-links__card feature-{{ category.name | downcase }}">
-            <h3 class="feature-links__header">
-              {{ category.name }}
-            </h3>
-            <h4 class="feature-links__description">
-              {{ category.description }}
-            </h4>
+          <img src="" class="feature-links__image" />
+          <h3 class="feature-links__header">
+            {{ category.name }}
+          </h3>
+          <h4 class="feature-links__description">
+            {{ category.description }}
+          </h4>
         </a>
       {% endif %}
-    {% endfor %}
+    {% endfor %} -->
+    <a href="solution/categories/22000001437" class="feature-links__card feature-your-account">
+      <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/22000096572/original/3Fn8Tw7Sm7a0iJcIIVbMVYgKbiyUeN3HJg.png?1481247483" class="feature-links__image" />
+      <h3 class="feature-links__header">
+        Getting Started
+      </h3>
+      <h4 class="feature-links__description">
+        Get to know Thinkific and its features, and check out our quickstart guides.
+      </h4>
+    </a>
+    <a href="solution/categories/22000001436" class="feature-links__card feature-your-account">
+      <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/22000096571/original/_SnCsMgMoK-m7NdHvkYIFCxZxgw8ert2Qw.png?1481247475" class="feature-links__image" />
+      <h3 class="feature-links__header">
+        Your Account
+      </h3>
+      <h4 class="feature-links__description">
+        Learn about your Thinkific account and how to manage admin access and billing.
+      </h4>
+    </a>
+    <a href="solution/categories/22000001438" class="feature-links__card feature-your-account">
+      <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/22000096570/original/Fmh1hBxcf8hfNIfIyL3yyYuRUIf5nlHdAQ.png?1481247466" class="feature-links__image" />
+      <h3 class="feature-links__header">
+        Training &amp; Community
+      </h3>
+      <h4 class="feature-links__description">
+        Get help with course creation and marketing through our resources and the community.
+      </h4>
+    </a>
   </div>
 </section>
 {% endif %}
