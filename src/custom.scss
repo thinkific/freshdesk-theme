@@ -176,6 +176,10 @@ a {
 .main-section-title {
   margin-bottom: 50px;
   font-weight: 300;
+
+  @include media($media-mobile) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .ellipsis {
@@ -1234,6 +1238,42 @@ input[type="password"]{
 //  Forums
 // =============================================================================
 
+
+// Forum: Controls
+// ------------
+
+.new-topic-button {
+  margin-left: auto;
+
+  a {
+    float: none;
+    @extend .x-btn;
+    @extend .x-btn-primary;
+    @extend .x-btn-sm;
+  }
+}
+
+.forum-controls {
+  @include display(flex);
+  @include align-items(center);
+  margin-bottom: 40px;
+
+  @include media($media-mobile) {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .breadcrumb {
+    margin: 0;
+    padding: 0;
+
+    @include media($media-mobile) {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+
 // Forum: Category 
 // -------------
 
@@ -1241,7 +1281,7 @@ input[type="password"]{
   @include outer-container;
   border-top: 1px solid $border-color;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 30px 0;
 }
 
 .forum-category__header {
@@ -1258,6 +1298,10 @@ input[type="password"]{
   border-radius: 3px;
   margin-bottom: 10px;
   padding: 6px 10px;
+
+  @include media($media-mobile-tablet) {
+    @include span-columns(12);
+  }
 
   .list-lead {
     font-size: 1.6em;
@@ -1282,7 +1326,11 @@ input[type="password"]{
 // --------------
 
 .forum-title {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+
+  @include media($media-mobile-tablet) {
+    margin-bottom: 0;
+  }
 
   .main-section-title {
     margin-bottom: 1rem;
@@ -1349,6 +1397,10 @@ input[type="password"]{
     background: transparent;
     border: none;
     box-shadow: none;
+
+    @include media($media-mobile-tablet) {
+      padding: 0;
+    }
   }
 
   #vote-toolbar {

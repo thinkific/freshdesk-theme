@@ -1,12 +1,15 @@
 <section class="site-content-container__body page--forum-index">
 
+  <div class="forum-controls">
+    <div class="new-topic-button">
+      {{ portal | link_to_start_topic }}
+    </div>
+  </div>
+
   <div class="community-forums__discussions">
     <h2 class="main-section-title">
       {% translate portal.community_forums %}
     </h2>    
-    <div class="start-topic">
-      {{ portal | link_to_start_topic }}
-    </div>
     {% for category in portal.forum_categories %}
       {% if category.forums_count > 0 %}
         <div class="forum-category">
@@ -83,7 +86,6 @@
         {% endif %}
       </section>
     {% endif %}
-
   </div>
 
 </section>
