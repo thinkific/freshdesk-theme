@@ -188,7 +188,15 @@ a {
   text-overflow: ellipsis;
 }
 
-.help-text, .p-info, .info-text, .list-noinfo, .description-text, .c-link {
+.help-text, 
+.p-info, 
+.info-text, 
+.list-noinfo, 
+.description-text, 
+.c-link,
+.lead,
+.lead-small,
+.lead-list {
   font-weight: 400 !important;
 }
 
