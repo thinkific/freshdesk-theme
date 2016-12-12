@@ -1,21 +1,26 @@
-<section class="content rounded-6 min-height-on-desktop" id="forum-{{ forum.id }}">
+<section class="site-content-container__body page--forum-topic-list" id="forum-{{ forum.id }}">
+
   {% if forum.type_name != 'announcement' %}
     <b class="pull-right">{{ portal | link_to_start_topic }}</b>
   {% endif %}
+
   <div class="breadcrumb">
     <a href="{{ portal.discussions_home_url }}">{% translate portal_pages.groups.discussions %}</a>
     <a href="{{ forum.forum_category.url }}">{{ forum.forum_category.name | h }}</a>
-  </div>  
-  <i class="page-stamp page-stamp-{{ forum.type_name }}">
-    <i class="icon-page-{{ forum.type_name }}"></i>
-  </i>
-  <div class="list-lead">
-    {{ forum.name|h}} <span class="item-count">{{ forum.topics_count }}</span>
-    <div class="pull-right align-right">{{ forum | follow_forum_button }}</div>
   </div>
-  <p class="intro" title="{{forum.description|h}}">
-    {{ forum.description|h}}
-  </p>
+
+  <div class="forum-title">
+    <h3 class="main-section-title">
+      {{ forum.name|h}}
+      <span class="item-count">{{ forum.topics_count }}</span>
+    </h3>
+    <div class="pull-right align-right">
+      {{ forum | follow_forum_button }}
+    </div>
+    <p class="forum-topic-description" title="{{forum.description|h}}">
+      {{ forum.description|h}}
+    </p>
+  </div>
   
   {{ forum | default_topic_filters }}
 

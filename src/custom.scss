@@ -184,6 +184,25 @@ a {
   text-overflow: ellipsis;
 }
 
+.help-text, .p-info, .info-text, .list-noinfo, .description-text, .c-link {
+  font-weight: 400 !important;
+}
+
+.see-more {
+  margin-left: 3px;
+  font-size: 16px;
+  color: $linkcolor;
+
+  &:before {
+    display: none;
+  }
+
+  &:after {
+    content: '\02192';
+    padding-left: 5px;
+  }
+}
+
 // =============================================================================
 // Buttons
 // =============================================================================
@@ -1006,21 +1025,6 @@ input[type="password"]{
   @include media($media-mobile) {
     @include span-columns(12);
   }
-
-  .see-more {
-    margin-left: 3px;
-    font-size: 16px;
-    color: $linkcolor;
-
-    &:before {
-      display: none;
-    }
-
-    &:after {
-      content: '\02192';
-      padding-left: 5px;
-    }
-  }
 }
 
 .article-list__folder-title {
@@ -1064,7 +1068,7 @@ input[type="password"]{
 
 
   &:hover {
-    background: $border-color;
+    background: lighten($border-color, 5%);
   }
 }
 
@@ -1158,21 +1162,6 @@ input[type="password"]{
   li {
     @extend .x-article-list__item;
   }
-
-  .see-more {
-    margin-left: 3px;
-    font-size: 16px;
-    color: $linkcolor;
-
-    &:before {
-      display: none;
-    }
-
-    &:after {
-      content: '\02192';
-      padding-left: 5px;
-    }
-  }
 }
 
 
@@ -1248,21 +1237,11 @@ input[type="password"]{
 // Forum: Category 
 // -------------
 
-.page--forum-index {
-  @include outer-container;
-  @include span-columns(12);
-  @include display(flex);
-}
-
 .forum-category {
   @include outer-container;
   border-top: 1px solid $border-color;
   margin-bottom: 20px;
   padding: 20px;
-
-  &:nth-of-type(odd) {
-    background: lighten($border-color, 5%);
-  }
 }
 
 .forum-category__header {
@@ -1279,18 +1258,149 @@ input[type="password"]{
   border-radius: 3px;
   margin-bottom: 10px;
   padding: 6px 10px;
-}
 
-.community-forums__discussions {
-  @include span-columns(9);
+  .list-lead {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    margin-left: 30px;
+  }
+
+  ul li {
+    margin-bottom: 15px;
+  }
 }
 
 .community-forums__discussions-sidebar {
-  @include span-columns(3);
-  border-left: 1px solid red;
+  display: none;
 }
 
 
+// Forum: Topics
+// --------------
+
+.forum-title {
+  margin-bottom: 50px;
+
+  .main-section-title {
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+
+  .forum-topic-description {
+    font-size: 14px;
+    color: lighten($basegrey,10%);
+  }
+}
+
+#forum-topic-list {
+  .c-user-thumb {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    &:hover {
+      background: lighten($border-color, 4%);
+    }
+  }
+}
+
+// Forum: Discussion 
+// ------------
+
+.page--forum-conversation {
+  .content-divider {
+    display: none;
+  }
+}
+
+// Original Posts
+#topic-comments {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 30px;
+
+  hr {
+    display: none !important;
+  }
+
+  // Remove the stupid arrows under the user images
+  .user-pointer-bottom {
+    &:after,
+    &:before {
+      display: none;
+    }
+  }
+
+  .user-info {
+    margin-bottom: 30px;
+  }
+
+  .user-name {
+    margin-bottom: 0;
+  }
+
+  .p-info {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .p-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  #vote-toolbar {
+    padding-top: 15px;
+
+    hr {
+      display: none;
+    }
+  }
+
+  .user-pic-thumb {
+    top: 10px;
+  }
+}
+
+.sort-posts {
+  background: lighten($border-color, 4%);
+  padding: 5px 12px;
+  border-radius: 3px;
+
+  .caret {
+    margin-top: 12px !important;
+    border-top-color: $basegrey;
+  }
+}
+
+.discussion-sidebar {
+  border-top: 1px solid $border-color;
+  padding: 30px 20px;
+  margin-top: 50px;
+}
+
+
+// Replies
+.replies-thread {
+  .user-comment {
+    padding: 25px 15px 0;
+
+    &:nth-of-type(even) {
+      background: lighten($border-color, 4%);
+    }
+  }
+}
+
+
+#reply-to-post {
+  .p-content {
+    border-radius: 3px;
+    border: none;
+    background: lighten($border-color, 4%);
+  }
+}
 
 
 
