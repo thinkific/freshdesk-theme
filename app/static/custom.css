@@ -1001,10 +1001,19 @@ input[type="password"] {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 100%;
-    margin-left: 0%; }
+    width: 82.94039%;
+    margin-left: 8.5298%; }
     .home-videos__inner .home-video__video-container:last-child {
       margin-right: 0; }
+    @media screen and (max-width: 970px) {
+      .home-videos__inner .home-video__video-container {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%;
+        margin-left: 0%; }
+        .home-videos__inner .home-video__video-container:last-child {
+          margin-right: 0; } }
 
 .home-contact-us {
   padding: 100px 80px; }
@@ -1028,9 +1037,7 @@ input[type="password"] {
       background-size: 80px; }
       @media screen and (max-width: 970px) {
         .home-contact-us .section-title:before {
-          top: -20%;
-          left: -10%;
-          background-size: 40px; } }
+          display: none; } }
 
 .home-contact-us__inner {
   text-align: center; }

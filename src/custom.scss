@@ -952,8 +952,13 @@ input[type="password"]{
   text-align: center;
 
   .home-video__video-container {
-    @include span-columns(12);
-    @include shift(0);
+    @include span-columns(10);
+    @include shift(1);
+
+    @include media($media-mobile-tablet) {
+      @include span-columns(12);
+      @include shift(0);
+    }
   }
 }
 
@@ -985,9 +990,7 @@ input[type="password"]{
       background-size: 80px;
 
       @include media($media-mobile-tablet) {
-        top: -20%;
-        left: -10%;
-        background-size: 40px;
+        display: none;
       }
     }
   }
