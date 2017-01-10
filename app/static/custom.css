@@ -191,6 +191,10 @@ a {
     content: '\02192';
     padding-left: 5px; }
 
+ul {
+  list-style-position: outside;
+  margin-left: 1.1em; }
+
 .x-btn, .new-topic-button a,
 .btn {
   padding: 10px 22px;
@@ -797,6 +801,8 @@ input[type="password"] {
     margin-right: 0; }
   .search-hero__popular-searches a {
     color: #ffffff; }
+    .search-hero__popular-searches a:hover {
+      text-decoration: underline; }
   @media screen and (max-width: 768px) {
     .search-hero__popular-searches {
       float: left;
@@ -807,6 +813,9 @@ input[type="password"] {
       .search-hero__popular-searches:last-child {
         margin-right: 0; } }
 
+.section--scheme-grey {
+  background: #eaeef2; }
+
 @media screen and (max-width: 970px) {
   .page-wrapper--home section {
     padding: 40px 50px; } }
@@ -816,7 +825,6 @@ input[type="password"] {
     padding: 40px 20px; } }
 
 .feature-links {
-  background: #eaeef2;
   padding: 90px 80px; }
 
 .feature-links__inner {
@@ -974,6 +982,59 @@ input[type="password"] {
   margin-bottom: 15px;
   line-height: 1.5; }
 
+.home-video {
+  padding: 60px 80px 80px; }
+  @media screen and (max-width: 970px) {
+    .home-video {
+      padding: 40px 20px; } }
+
+.home-videos__inner {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; }
+  .home-videos__inner::after {
+    clear: both;
+    content: "";
+    display: block; }
+  .home-videos__inner .home-video__video-container {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%;
+    margin-left: 0%; }
+    .home-videos__inner .home-video__video-container:last-child {
+      margin-right: 0; }
+
+.home-contact-us {
+  padding: 100px 80px; }
+  @media screen and (max-width: 970px) {
+    .home-contact-us {
+      padding: 60px 20px; } }
+  .home-contact-us .section-title {
+    display: inline-block;
+    position: relative;
+    font-weight: 200; }
+    .home-contact-us .section-title:before {
+      content: '';
+      display: block;
+      height: 157px;
+      width: 100%;
+      position: absolute;
+      top: -80%;
+      left: -20%;
+      background-image: url(https://s3.amazonaws.com/thinkific/file_uploads/626/images/1cf/498/206/sparkle_5-22_thumb.png);
+      background-repeat: no-repeat;
+      background-size: 80px; }
+      @media screen and (max-width: 970px) {
+        .home-contact-us .section-title:before {
+          top: -20%;
+          left: -10%;
+          background-size: 40px; } }
+
+.home-contact-us__inner {
+  text-align: center; }
+
 .page--article-content {
   float: left;
   display: block;
@@ -1062,9 +1123,7 @@ input[type="password"] {
   font-weight: bold; }
 
 .sidebar--more-articles ul {
-  list-style: inside;
-  margin: 0;
-  padding: 0; }
+  margin: 0; }
 
 .sidebar--more-articles ul li {
   margin-bottom: 10px; }
@@ -1103,9 +1162,9 @@ input[type="password"] {
 
 .x-article-list, .solutions-home__article-list ul {
   padding: 0;
-  margin: 0 0 20px 3px;
   color: #71767a;
-  list-style-position: inside; }
+  list-style: none;
+  margin: 0; }
 
 .x-article-list__item, .solutions-home__article-list li {
   font-size: 16px;

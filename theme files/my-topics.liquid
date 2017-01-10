@@ -23,10 +23,8 @@
       {% for topic in paginate.collection %}
         <div class="c-row c-user-thumb {% if topic.sticky? %} c-topic-sticky {% endif %}">
           {{ topic.user | profile_image }}
-          {{ topic | topic_labels }}
-          <div class="ellipsis">            
-            <a class="c-link" title="{{topic.title | h}}" href="{{topic.url}}">{{topic.title | h}}</a>
-          </div>        
+          {{ topic | topic_labels }}          
+            <a class="c-link" title="{{topic.title | h}}" href="{{topic.url}}">{{topic.title | h}}</a>      
           <div class="help-text"> 
             {{ topic | topic_info_with_votes }}
           </div>

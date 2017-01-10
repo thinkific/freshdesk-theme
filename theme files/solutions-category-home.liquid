@@ -17,11 +17,9 @@
         <ul class="x-article-list">
           {% for article in folder.articles limit:5 %}
             <li class="x-article-list__item">
-              <div class="ellipsis">
-                <a href="{{article.url}}" title="{{article.title | h}}">
-                  {{article.title |h}}
-                </a>
-              </div>
+              <a href="{{article.url}}" title="{{article.title | h}}">
+                {{article.title |h}}
+              </a>
             </li>
           {% endfor %}
         </ul>

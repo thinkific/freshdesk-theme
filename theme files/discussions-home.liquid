@@ -43,9 +43,7 @@
         <ul>
         {% for topic in portal.recent_popular_topics %}
           <li class="">
-            <div class="ellipsis">
-              <a href="{{topic.url}}">{{topic.title | h}}</a>
-            </div>
+            <a href="{{topic.url}}">{{topic.title | h}}</a>
             <div class="help-text">
               {{ topic | topic_info }}
             </div>
@@ -62,9 +60,7 @@
         <ul>
         {% for topic in portal.my_topics limit:5 %}
           <li class="cs-g-3">
-            <div class="ellipsis">
-              <a href="{{topic.last_post_url}}">{{topic.title | h}}</a>
-            </div>
+            <a href="{{topic.last_post_url}}">{{topic.title | h}}</a>
             <div class="help-text">
               {{ topic | my_topic_info }}
               {% if topic.last_post.present? %}

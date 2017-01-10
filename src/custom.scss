@@ -215,6 +215,13 @@ a {
   }
 }
 
+ul {
+  list-style-position: outside;
+  margin-left: 1.1em;
+}
+
+
+
 // =============================================================================
 // Buttons
 // =============================================================================
@@ -403,7 +410,6 @@ input[type="password"]{
 
 // Header: Logged in
 // ---------------
-
 
 .header__account-nav--logged-in {
   @include display(flex);
@@ -777,6 +783,10 @@ input[type="password"]{
 
   a {
     color: #ffffff;
+
+    &:hover{ 
+      text-decoration: underline;
+    }
   }
 
   @include media($media-mobile) {
@@ -788,6 +798,10 @@ input[type="password"]{
 // =============================================================================
 //  Home Page
 // =============================================================================
+
+.section--scheme-grey {
+  background: #eaeef2;
+}
 
 .page-wrapper--home {
   section {
@@ -805,7 +819,6 @@ input[type="password"]{
 // ----------------
 
 .feature-links {
-  background: #eaeef2;
   padding: 90px 80px;
 }
 
@@ -923,6 +936,67 @@ input[type="password"]{
 }
 
 
+// Home Page: Help Video
+// -------------
+
+.home-video {
+  padding: 60px 80px 80px;
+
+  @include media($media-mobile-tablet) {
+    padding: 40px 20px;
+  }
+}
+
+.home-videos__inner {
+  @include outer-container;
+  text-align: center;
+
+  .home-video__video-container {
+    @include span-columns(12);
+    @include shift(0);
+  }
+}
+
+// Home Page: Contact Us
+// -------------
+
+.home-contact-us {
+  padding: 100px 80px;
+
+  @include media($media-mobile-tablet) {
+    padding: 60px 20px;
+  }
+
+  .section-title {
+    display: inline-block;
+    position: relative;
+    font-weight: 200;
+
+    &:before {
+      content: '';
+      display: block;
+      height: 157px;
+      width: 100%;
+      position: absolute;
+      top: -80%;
+      left: -20%;
+      background-image: url(https://s3.amazonaws.com/thinkific/file_uploads/626/images/1cf/498/206/sparkle_5-22_thumb.png);
+      background-repeat: no-repeat;
+      background-size: 80px;
+
+      @include media($media-mobile-tablet) {
+        top: -20%;
+        left: -10%;
+        background-size: 40px;
+      }
+    }
+  }
+}
+
+.home-contact-us__inner {
+  text-align: center;
+}
+
 // =============================================================================
 //  Article
 // =============================================================================
@@ -1015,9 +1089,7 @@ input[type="password"]{
   }
 
   ul {
-    list-style: inside;
     margin: 0;
-    padding: 0;
   }
 
   ul li {
@@ -1061,9 +1133,9 @@ input[type="password"]{
 
 .x-article-list {
   padding: 0;
-  margin: 0 0 20px 3px;
   color: $basegrey;
-  list-style-position: inside;
+  list-style: none;
+  margin: 0;
 }
 
 .x-article-list__item {

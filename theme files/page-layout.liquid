@@ -34,14 +34,18 @@
         {% snippet search_form %}
         <div class="search-hero__popular-searches">
           <strong>Common Searches:</strong>
-          {% assign common_searches = "Landing Page,Affiliate,Themes" | split:"," %}
-          {% for category in portal.solution_categories %}
+          <!-- This isn't used, but maybe we want it later -->
+          <!-- {% assign common_searches = "Landing Page,Affiliate,Themes" | split:"," %} -->
+         <!--  {% for category in portal.solution_categories %}
             {% if common_searches contains category.name and forloop.last %}
               <a href="{{ category.url }}">{{ category.name }}</a>
             {% elsif common_searches contains category.name %}
               <a href="{{ category.url }}">{{ category.name }}</a>,
             {% endif %}
-          {% endfor %}
+          {% endfor %} -->
+          <a href="/support/search?term=landing%20page">Landing Page</a>,
+          <a href="/support/search?term=affiliate">Affiliate</a>,
+          <a href="/support/search?term=themes">Themes</a>
         </div>
       </div>      
     </section>
