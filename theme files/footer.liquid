@@ -6,36 +6,32 @@
         <div class="column-header">
           Thinkific Home
         </div>
-        <a href="//www.thinkific.com" target="_blank">Thinkific Website</a>
-        <a href="//www.thinkific.com/tour" target="_blank">Take a Tour</a>
         <a href="//www.thinkific.com/features" target="_blank">Features</a>
+        <a href="//www.thinkific.com/tour" target="_blank">Take a Tour</a> 
+        <a href="//www.thinkific.com/about" target="_blank">About</a>               
         <a href="//www.thinkific.com/pricing" target="_blank">Pricing</a>
-        <a href="//experts.thinkific.com" target="_blank">Find an Expert</a>
       </nav>
 
       <nav class="page-footer__column freshdesk-links">
-        {% if portal.tabs.size > 0 %}
           <div class="column-header">
             Support Resources
           </div>
-          {% for tab in portal.tabs %}
-            <a href="{{tab.url}}" class="{% if tab.tab_type == current_tab %}active{% endif %}">
-              {{ tab.label }}
-            </a>
-          {% endfor %}
-        {% endif %}
+          <a href="https://localhost:3000/support/solutions">Support Docs</a>
+          <a href="https://localhost:3000/support/discussions">Community Forums</a>
+          <a href="//blog.thinkific.com" target="_blank">Blog</a>
+          <a href="https://training.thinkific.com/" target="_blank">Training Center</a>
+          <a href="http://experts.thinkific.com/" target="_blank">Experts Marketplace</a>
         {{ portal | link_to_privacy_policy }}
       </nav>
 
       <nav class="page-footer__column social-links">
         <div class="column-header">
-          Connect with us
+          Connect With Us
         </div>
         <a href="/support/tickets/new" target="_blank">Contact Support</a>
         <a href="https://twitter.com/thinkific" target="_blank">Twitter</a>
         <a href="https://www.facebook.com/Thinkific/" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/user/Thinkific" target="_blank">Youtube</a>
-        <a href="//blog.thinkific.com" target="_blank">Blog</a>
+        <a href="https://www.youtube.com/user/Thinkific" target="_blank">YouTube</a>        
       </nav>
       
       <div class="page-footer__copyright">

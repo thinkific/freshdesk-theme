@@ -18,7 +18,8 @@ var browserSync = require('browser-sync').create();
  }
 
 browserSync.init({
-    proxy: "https://thinkificsandbox.freshdesk.com/support/home",
+    // proxy: "https://thinkificsandbox.freshdesk.com/support/home",
+    proxy: "http://help.thinkific.com/support/home",
     serveStatic: ["app/static"],
     https: true,
     files: "app/static/custom.css",

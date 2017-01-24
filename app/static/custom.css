@@ -5,6 +5,9 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
+.action-bar-wrapper .nav-link [href="/support/tickets"], [href^="/support/search/tickets"] {
+  display: none !important; }
+
 html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -159,7 +162,7 @@ a {
     text-decoration: none; }
 
 .main-section-title {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-weight: 300; }
   @media screen and (max-width: 768px) {
     .main-section-title {
@@ -1058,6 +1061,11 @@ input[type="password"] {
       .page--article-content:last-child {
         margin-right: 0; } }
 
+.plans-well {
+  padding-top: 10px; }
+  .plans-well .label {
+    text-shadow: none; }
+
 .site-sidebar {
   float: left;
   display: block;
@@ -1112,7 +1120,8 @@ input[type="password"] {
     color: #71767a !important;
     font-size: 16px !important;
     line-height: 1.5;
-    text-align: left !important; }
+    text-align: left !important;
+    margin-bottom: 0; }
 
 #article-author {
   padding-top: 10px; }
@@ -1134,6 +1143,10 @@ input[type="password"] {
 
 .sidebar--more-articles ul li {
   margin-bottom: 10px; }
+
+.article__body--zapier-info-inside {
+  border: 1px solid #eaeef2;
+  padding: 20px; }
 
 .article-list-container {
   float: left;
@@ -1420,6 +1433,10 @@ input[type="password"] {
   padding-bottom: 30px; }
   #forum-topic-list .c-user-thumb:hover {
     background: #f7f8fa; }
+
+.best-answer-info {
+  margin-top: 15px;
+  margin-bottom: 15px; }
 
 .page--forum-conversation .content-divider {
   display: none; }

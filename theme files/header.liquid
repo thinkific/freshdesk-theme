@@ -11,7 +11,7 @@
       </a>
       <nav class="header__site-nav" >
         <div class="nav-link" id="header-tabs"> 
-          <a href="/support/solutions" class="header-tabs__link">Solutions</a>
+          <a href="/support/solutions" class="header-tabs__link">Support</a>
           <a href="/support/discussions" class="header-tabs__link ">Forums</a>
         </div>
       </nav>
@@ -20,7 +20,7 @@
               autocomplete="off" 
               action="/support/search" 
               id="header-search-form">
-          <input placeholder="Enter your search term here..." 
+          <input placeholder="Search" 
                  type="text" 
                  name="term" 
                  class="header-search-input" 
@@ -37,7 +37,7 @@
       <nav class="header__account-nav">
         {% if portal.has_user_signed_in == true %}
           <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary x-btn-sm">
-            New Ticket
+            Contact Us
           </a>
 
           <div class="header__account-nav--logged-in">
@@ -55,7 +55,7 @@
             </div>
           </div>
         {% else %}
-          <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
+          <a href="/support/tickets/new" class="header-tabs__link">Contact Us</a>
           <!-- <a href="/support/login" class="header-tabs__link">Sign in</a> -->
           <a href="https://courses.thinkific.com/sites/new" class="x-btn x-btn-primary x-btn-sm">
             Get Started Free
@@ -75,7 +75,7 @@
 
         <nav class="header__site-nav" >
           <div class="nav-link" id="header-tabs"> 
-            <a href="/support/solutions" class="header-tabs__link">Solutions</a>
+            <a href="/support/solutions" class="header-tabs__link">Support</a>
             <a href="/support/discussions" class="header-tabs__link ">Forums</a>
           </div>
         </nav>
@@ -84,7 +84,7 @@
           {% if portal.has_user_signed_in == true %}
 
             <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary x-btn-sm">
-              New Ticket
+              Contact Us
             </a>
 
             <div class="header__account-nav--logged-in">
@@ -102,7 +102,7 @@
               </div>
             </div>
           {% else %}
-            <a href="/support/tickets/new" class="header-tabs__link">Contact us</a>
+            <a href="/support/tickets/new" class="header-tabs__link">Contact Us</a>
             <!-- <a href="/support/login" class="header-tabs__link">Sign in</a> -->
             <a href="https://courses.thinkific.com/sites/new" class="x-btn x-btn-primary x-btn-sm">
               Get Started Free
@@ -122,4 +122,3 @@
     </div>
   </header>
 {% endif %}
-

@@ -11,9 +11,7 @@
         <b class="icon-page-article"></b>
       </b> -->
 
-      <h2 class="article-heading">{{ article.title | h}}
-        <a href="javascript:print();" class="icon-print solution-print-icon" title="{% translate portal.print_title %}"></a>
-      </h2>
+      <h2 class="article-heading">{{ article.title | h}}</h2>
 
       {% if article.personalized_articles? %}
         <h5 class="article__author article-meta-data">
@@ -61,6 +59,37 @@
 
       <article class="article__body" id="article-body" rel="image-enlarge">
         {{ article.body }}
+
+        {% if article.id == 223686 %}   
+          <div class="article__body--zapier-info">
+            <script src="https://zapier.com/zapbook/embed/widget.js?services=thinkific&container=true&limit=5,"></script>
+              <h2>Related Articles</h2>   
+              <p>
+                <a href="http://help.thinkific.com/support/solutions/articles/218475-integrate-with-zapier-and-automate-your-business" target="_blank">
+                  Integrate with Zapier
+                </a>
+              </p> 
+              <div class="article__body--zapier-info-inside">    
+                <img class="fr-draggable fr-dii" 
+                      src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/30710313/original/GNDip_g2dBrZuA97L7ygnahjoGciWix-NQ.png?1481156789" 
+                      data-attachment_id="30710313" 
+                      data-title="GNDip_g2dBrZuA97L7ygnahjoGciWix-NQ.png" 
+                      data-image="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/30710313/original/GNDip_g2dBrZuA97L7ygnahjoGciWix-NQ.png?1481156789" 
+                      style="width: 100px; height: auto;"> 
+                <br>
+                <p>
+                  Got something you’re trying to achieve and not sure if Zapier is the 
+                  solution? Or having issues with setting up a Zap? Our Customer Success 
+                  team is on hand to give you advice and tips. 
+                  Reach them 
+                  <a href="http://help.thinkific.com/support/tickets/new" target="_blank">
+                    here
+                  </a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
       </article>
 
       {{article | article_attachments}}

@@ -26,6 +26,10 @@ $linkcolor: $thinkpurple;
 $base-transition-time: .15s;
 
 
+.action-bar-wrapper .nav-link [href="/support/tickets"], [href^="/support/search/tickets"] {    
+  display: none !important;  
+}
+
 // =============================================================================
 // Body
 // =============================================================================
@@ -174,7 +178,7 @@ a {
 }
 
 .main-section-title {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-weight: 300;
 
   @include media($media-mobile) {
@@ -1012,6 +1016,19 @@ input[type="password"]{
   }
 }
 
+// Labels that show which plan the feature is available on
+.plans-well {
+  padding-top: 10px;
+
+  .label {
+    text-shadow: none;
+  }
+
+  .label-selected {
+
+  }
+}
+
 .site-sidebar {
   @include span-columns(4);
   @include flex(1);
@@ -1060,6 +1077,8 @@ input[type="password"]{
     font-size: 16px !important;
     line-height: 1.5;
     text-align: left !important;
+    // @catherine, look here.
+    margin-bottom: 0;
   }
 
 }
@@ -1099,6 +1118,16 @@ input[type="password"]{
     margin-bottom: 10px;
   }
 }
+
+
+// Article: Zapier section 
+// ------------
+
+.article__body--zapier-info-inside {
+  border: 1px solid $border-color;
+  padding: 20px;
+}
+
 
 // =============================================================================
 //  Article list
@@ -1439,6 +1468,11 @@ input[type="password"]{
 
 // Forum: Discussion 
 // ------------
+
+.best-answer-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 
 .page--forum-conversation {
   .content-divider {
