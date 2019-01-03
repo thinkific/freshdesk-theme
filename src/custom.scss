@@ -14,20 +14,23 @@ $media-mobile: new-breakpoint(max-width 768px);
 // =============================================================================
 
 $basewhite: #ffffff;
-$basegrey: #71767a;
-$thinkblue: #1b9eea;
-$thinkgreen: #36c69c;
-$thinkpurple: #645ab1;
+$basegrey: #f2f3f4;
+$baseblack: #000000;
+$thinkpurple: #35002f;
+$thinklightgold: #e6aa67;
+$thinkdarkgold: #e29e51;
+$thinkgold: #cd8a2a;
+$thinkdarkblue: #001526;
 
 $border-color: #eaeef2;
 
-$linkcolor: $thinkpurple;
+$linkcolor: $thinkgold;
 
 $base-transition-time: .15s;
 
 
-.action-bar-wrapper .nav-link [href="/support/tickets"], [href^="/support/search/tickets"] {    
-  display: none !important;  
+.action-bar-wrapper .nav-link [href="/support/tickets"], [href^="/support/search/tickets"] {
+  display: none !important;
 }
 
 // =============================================================================
@@ -41,11 +44,15 @@ html {
 }
 
 body {
-  background: $basewhite;  
-  color: $basegrey;
-  font-family: 'Open Sans', sans-serif;
+  background: $basewhite;
+  color: $baseblack;
+  font-family: 'Barlow', sans-serif;
   line-height: 1.5;
   font-size: 16px;
+}
+
+input, button, select, textarea {
+  font-family: 'Barlow', sans-serif;
 }
 
 .page-wrapper {
@@ -64,18 +71,19 @@ body {
 .page-canvas {
   position: relative;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 
   @include media($media-mobile-tablet) {
     @include transform(translateX(0));
     @include transition(all $base-transition-time ease);
-  } 
+  }
 }
 
 .site-content-container {
-  @include outer-container;
   margin-top: 120px;
   margin-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 30px;
   padding-right: 30px;
 
@@ -118,7 +126,7 @@ h1, h2, h3, h4, h5, h6, p {
   line-height: 1.5;
 }
 
-h1, 
+h1,
 .h1 {
   font-size: 3.815em;
 
@@ -127,7 +135,7 @@ h1,
   }
 }
 
-h2, 
+h2,
 .h2 {
   font-size: 3.052em;
 
@@ -136,26 +144,27 @@ h2,
   }
 }
 
-h3, 
+h3,
 .h3 {
-  font-size: 2.441em;
+  font-size: 2em;
 
   @include media($media-mobile) {
     font-size: 1.953em;
   }
 }
 
-h4, 
+h4,
 .h4 {
-  font-size: 1.953em;
+  font-size: 1.5em;
+  margin-bottom: 0.75em;
 }
 
-h5, 
+h5,
 .h5 {
   font-size: 1.563em;
 }
 
-h6, 
+h6,
 .h6 {
   font-size: 1.25em;
   text-transform: inherit;
@@ -178,7 +187,8 @@ a {
 }
 
 .main-section-title {
-  margin-bottom: 20px;
+  @include outer-container;
+  margin-bottom: 60px;
   font-weight: 300;
 
   @include media($media-mobile) {
@@ -192,11 +202,11 @@ a {
   text-overflow: ellipsis;
 }
 
-.help-text, 
-.p-info, 
-.info-text, 
-.list-noinfo, 
-.description-text, 
+.help-text,
+.p-info,
+.info-text,
+.list-noinfo,
+.description-text,
 .c-link,
 .lead,
 .lead-small,
@@ -207,7 +217,7 @@ a {
 .see-more {
   margin-left: 3px;
   font-size: 16px;
-  color: $linkcolor;
+  color: $baseblack;
 
   &:before {
     display: none;
@@ -230,11 +240,11 @@ ul {
 // Buttons
 // =============================================================================
 
-.x-btn, 
+.x-btn,
 .btn {
   padding: 10px 22px;
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 500;
   box-shadow: none;
   text-shadow: none;
   text-align: center;
@@ -244,11 +254,10 @@ ul {
   &:hover {
     @include transition-property(all);
     @include transition-duration($base-transition-time);
-    @include transform(translateY(-2px));
     text-shadow: none;
   }
 
-  &:hover, 
+  &:hover,
   &:active,
   &:focus {
     text-decoration: none !important;
@@ -260,15 +269,15 @@ ul {
   font-size: 14px !important;
 }
 
-.x-btn-primary, 
+.x-btn-primary,
 .btn-primary {
-  background: $thinkgreen;
+  background: $thinklightgold;
   color: $basewhite;
   font-size: 15px;
   display: inline-block;
 
   &:hover {
-    background: lighten($thinkgreen, 5%);
+    background: lighten($thinkdarkgold, 5%);
     color: $basewhite;
   }
 }
@@ -277,12 +286,12 @@ ul {
 // Forms
 // =============================================================================
 
-input[type="text"], 
+input[type="text"],
 input[type="email"],
 input[type="password"]{
   padding: 10px 15px;
   border: 1px solid lighten($basegrey, 30%);
-  box-shadow: none;  
+  box-shadow: none;
   border-radius: 3px;
   font-size: 16px;
 
@@ -303,7 +312,7 @@ input[type="password"]{
 
 .control-group label {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 // =============================================================================
@@ -313,8 +322,8 @@ input[type="password"]{
 .header {
   @include transition(all 0.5s ease);
   position: absolute;
-  width: 100%;  
-  padding: 15px 20px;
+  width: 100%;
+  padding: 1.875rem;
 
   .flex-container {
     @include align-items(center);
@@ -326,8 +335,12 @@ input[type="password"]{
 }
 
 .header-tabs__link {
-  font-size: 16px;
   color: $basewhite;
+  text-transform: uppercase;
+  font-size: .8125rem;
+  font-weight: 400;
+  letter-spacing: .0625rem;
+  line-height: normal;
 
   &.active,
   &:hover,
@@ -350,18 +363,17 @@ input[type="password"]{
     @include clearfix;
     display: block;
     float: none;
-    margin: 0;    
+    margin: 0;
   }
 
   img {
     display: block;
     height: auto;
-    max-width: 125px;
+    max-width: 6.25rem;
   }
 
   &:hover {
     @include transition(all $base-transition-time ease);
-    @include transform(translateY(-2px));
   }
 }
 
@@ -429,7 +441,7 @@ input[type="password"]{
     padding: 10px 0;
 
     a {
-      color: $basegrey !important;
+      color: $baseblack !important;
     }
 
     a:hover,
@@ -450,8 +462,8 @@ input[type="password"]{
   color: $basewhite;
   margin-right: 5px;
 
-  &:hover, 
-  &:active, 
+  &:hover,
+  &:active,
   &:focus {
     color: $basewhite;
     text-decoration: underline;
@@ -459,30 +471,30 @@ input[type="password"]{
 }
 
 .header--white .profile-name {
-  color: $basegrey;
+  color: $basewhite;
 }
 
 .dropdown .caret {
-  border-top-color: #ffffff;
+  border-top-color: $basewhite;
   margin-top: 11px;
 }
 
 .header--white .dropdown .caret {
-  border-top-color: $basegrey;
+  border-top-color: $thinkpurple;
 }
 
-// Header: Header white 
+// Header: Header white
 // ---------------
 
 .header--white {
   @include transition(all 0.5s ease);
-  display: none;  
+  display: none;
   position: fixed;
   top: 0;
   margin-top: -70px;
-  background: $basewhite;  
-  box-shadow: 0 0 15px 0 rgba($basegrey, 0.14);  
-  border-bottom: 1px solid $border-color;
+  background: $thinkpurple;
+  box-shadow: 0 0 15px 0 rgba($basegrey, 0.14);
+  border-bottom: 1px solid $thinkpurple;
   z-index: 1000;
 
   @include media($media-mobile-tablet) {
@@ -490,12 +502,12 @@ input[type="password"]{
   }
 
   .header-tabs__link {
-    color: $basegrey;
+    color: $basewhite;
 
     &.active,
     &:hover,
     &:active {
-      color: $basegrey;
+      color: $basewhite;
     }
   }
 
@@ -514,7 +526,7 @@ input[type="password"]{
 // -------------
 
 .mobile-header {
-  @include linear-gradient(50deg, $thinkblue 0%, $thinkpurple 100%);
+  background-color: $thinkpurple;
   display: none;
   padding: 15px 20px;
 
@@ -528,7 +540,7 @@ input[type="password"]{
   background-image: none;
   background-color: transparent;
   position: absolute;
-  top: 0;  
+  top: 0;
   width: 100%;
   padding: 20px 20px 0;
   box-shadow: none;
@@ -545,10 +557,10 @@ input[type="password"]{
   @include flex(0 0 auto);
   margin-left: auto;
   display: none;
-  background: $basewhite;
+  background: $thinklightgold;
   border-radius: 3px;
   padding: 3px 12px;
-  color: $thinkpurple;
+  color: $basewhite;
   cursor: pointer;
 
   @include media($media-mobile-tablet) {
@@ -558,15 +570,15 @@ input[type="password"]{
 
 // The actual nav itself
 .mobile-nav {
-  display: none; 
+  display: none;
   position: absolute;
   top: 0;
   right: -250px;
   width: 250px;
   height: 100%;
   padding: 20px;
-  background: #595f65;  
-  text-align: center;  
+  background: #595f65;
+  text-align: center;
 
   @include media($media-mobile-tablet) {
     display: initial;
@@ -585,6 +597,10 @@ input[type="password"]{
   color: $basewhite;
   cursor: pointer;
 
+  &:hover {
+    color: $basewhite !important;
+  }
+
   &.active {
     text-decoration: underline;
   }
@@ -601,10 +617,8 @@ input[type="password"]{
 // =============================================================================
 
 .page-footer {
-  border-top: 1px solid $border-color;
   padding: 80px;
-  margin-top: 30px;
-  background: #ffffff;
+  background: $thinkdarkblue;
 
   @include media($media-mobile) {
     padding: 40px 20px;
@@ -626,18 +640,19 @@ input[type="password"]{
   }
 
   .column-header {
-    font-weight: bold;
+    color: $basewhite;
+    font-weight: 500;
     margin-bottom: 15px;
   }
 
   a {
-    color: $basegrey;
+    color: $basewhite;
     font-size: 16px;
     display: block;
     margin-bottom: 10px;
 
     &:hover {
-      color: $thinkpurple;
+      color: $basewhite;
       text-decoration: underline;
     }
   }
@@ -648,7 +663,7 @@ input[type="password"]{
   display: block;
   padding-top: 60px;
   font-size: 12px;
-  color: lighten($basegrey, 10%);
+  color: $basewhite;
 }
 
 
@@ -667,13 +682,13 @@ input[type="password"]{
     color: $linkcolor;
 
     &:hover {
-      color: $thinkpurple;
+      color: $linkcolor;
     }
   }
 
-  & a:before, 
+  & a:before,
   & span:before {
-    color: $basegrey;
+    color: $linkcolor;
   }
 }
 
@@ -682,7 +697,9 @@ input[type="password"]{
 // =============================================================================
 
 .search-hero {
-  @include linear-gradient(50deg, $thinkblue 0%, $thinkpurple 100%);
+  background-color: $thinkpurple;
+  background-image: url('https://s3.amazonaws.com/thinkific/file_uploads/55770/images/5e2/541/a45/help-center-bg.jpg');
+  background-size: cover;
   color: $basewhite;
   text-align: center;
   padding-left: 20px;
@@ -711,7 +728,7 @@ input[type="password"]{
         padding: 15px 20px;
       }
 
-      &:focus {      
+      &:focus {
         @include transform(scale(1.1));
         opacity: 1;
         box-shadow: 0px 9px 22px 0px rgba(0, 0, 0, 0.2);
@@ -743,7 +760,7 @@ input[type="password"]{
   }
 }
 
-// Search Hero: sizes 
+// Search Hero: sizes
 // ------------------
 
 .search-hero--large {
@@ -751,13 +768,13 @@ input[type="password"]{
   padding-bottom: 180px !important;
 
   @include media($media-mobile) {
-    padding-top: 120px !important;  
+    padding-top: 120px !important;
     padding-bottom: 80px !important;
   }
 }
 
 .search-hero--small {
-  padding-top: 100px; 
+  padding-top: 100px;
   padding-bottom: 80px;
 }
 
@@ -788,7 +805,7 @@ input[type="password"]{
   a {
     color: #ffffff;
 
-    &:hover{ 
+    &:hover{
       text-decoration: underline;
     }
   }
@@ -804,14 +821,14 @@ input[type="password"]{
 // =============================================================================
 
 .section--scheme-grey {
-  background: #eaeef2;
+  background: $basegrey;
 }
 
 .page-wrapper--home {
   section {
     @include media($media-mobile-tablet) {
       padding: 40px 50px;
-    }  
+    }
 
     @include media($media-mobile) {
       padding: 40px 20px;
@@ -839,20 +856,19 @@ input[type="password"]{
   @include flex(1);
   @include span-columns(4);
   @include transition-property(all);
-  @include transition-duration($base-transition-time);  
-  background: $basewhite;
+  @include transition-duration($base-transition-time);
+  background: $basegrey;
   padding: 40px 30px;
   border-radius: 3px;
   text-align: center;
-  color: $basegrey;
-  box-shadow: 1px 1px 0 rgba($basegrey, 0.15);
+  color: $baseblack;
 
-  &:hover, 
-  &:active, 
+  &:hover,
+  &:active,
   &:focus {
     @include transform(translateY(-2px));
     text-decoration: none;
-    color: $basegrey;
+    color: $baseblack;
     box-shadow: 0px 5px 18px 0px rgba($basegrey, 0.15);
 
     .feature-links__image {
@@ -861,26 +877,26 @@ input[type="password"]{
     }
 
     .feature-links__header{
-      color: $basegrey;
+      color: $baseblack;
     }
   }
 
   @include media($media-mobile) {
     @include span-columns(12);
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     padding: 30px 30px;
   }
 }
 
 .feature-links__image {
   margin-bottom: 30px;
-  width: 200px;
+  width: 100px;
   height: auto;
 }
 
 .feature-links__header {
   margin-bottom: 10px;
-  color: $thinkpurple;
+  color: $baseblack;
   font-size: 26px;
 }
 
@@ -970,6 +986,7 @@ input[type="password"]{
 // -------------
 
 .home-contact-us {
+  background-color: $basegrey;
   padding: 100px 80px;
 
   @include media($media-mobile-tablet) {
@@ -980,23 +997,6 @@ input[type="password"]{
     display: inline-block;
     position: relative;
     font-weight: 200;
-
-    &:before {
-      content: '';
-      display: block;
-      height: 157px;
-      width: 100%;
-      position: absolute;
-      top: -80%;
-      left: -20%;
-      background-image: url(https://s3.amazonaws.com/thinkific/file_uploads/626/images/1cf/498/206/sparkle_5-22_thumb.png);
-      background-repeat: no-repeat;
-      background-size: 80px;
-
-      @include media($media-mobile-tablet) {
-        display: none;
-      }
-    }
   }
 }
 
@@ -1025,7 +1025,7 @@ input[type="password"]{
   }
 
   .label-selected {
-
+    background-color: $thinkpurple;
   }
 }
 
@@ -1036,7 +1036,7 @@ input[type="password"]{
   border-left: 1px solid $border-color;
   padding: 20px 0 20px 40px;
 
-  @include media($media-mobile-tablet) { 
+  @include media($media-mobile-tablet) {
     @include span-columns(12);
     border-top: 1px solid $border-color;
     border-left: none;
@@ -1063,7 +1063,7 @@ input[type="password"]{
   }
 }
 
-.article__author, 
+.article__author,
 .article__modified-date {
   margin-bottom: 0;
 }
@@ -1073,7 +1073,7 @@ input[type="password"]{
   margin-bottom: 40px;
 
   p {
-    color: $basegrey !important;
+    color: $baseblack !important;
     font-size: 16px !important;
     line-height: 1.5;
     text-align: left !important;
@@ -1096,7 +1096,7 @@ input[type="password"]{
   color: lighten($basegrey, 15%);
 }
 
-// Article: Sidebar 
+// Article: Sidebar
 // -----------
 
 .sidebar--more-articles {
@@ -1107,7 +1107,7 @@ input[type="password"]{
   }
 
   .folder-name {
-    font-weight: bold;
+    font-weight: 500;
   }
 
   ul {
@@ -1120,7 +1120,7 @@ input[type="password"]{
 }
 
 
-// Article: Zapier section 
+// Article: Zapier section
 // ------------
 
 .article__body--zapier-info-inside {
@@ -1148,8 +1148,8 @@ input[type="password"]{
   padding-bottom: 10px;
 
   a {
-    color: $basegrey;
-    font-weight: bold;
+    color: $baseblack;
+    font-weight: 500;
   }
 
   .item-count {
@@ -1163,14 +1163,16 @@ input[type="password"]{
   }
 }
 
-.x-article-list {
+.x-article-list,
+.bsolutions-home__article-list ul {
   padding: 0;
-  color: $basegrey;
+  color: $baseblack;
   list-style: none;
   margin: 0;
 }
 
-.x-article-list__item {
+.x-article-list__item,
+.bsolutions-home__article-list li {
   font-size: 16px;
   margin-bottom: 15px;
 }
@@ -1232,6 +1234,23 @@ input[type="password"]{
   margin-bottom: 10px;
 }
 
+.page--solutions-search {
+  display: block;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 6px 20px 4px rgba(0,0,0,0.05);
+  -moz-box-shadow: 0px 6px 20px 4px rgba(0,0,0,0.05);
+  box-shadow: 0px 6px 20px 4px rgba(0,0,0,0.05);
+}
+
+#solutions-search-input {
+  width: 100%;
+  margin: 0 !important;
+  border: none !important;
+  height: 3.5em !important;
+}
+
 // =============================================================================
 //  Solutions Home
 // =============================================================================
@@ -1241,32 +1260,55 @@ input[type="password"]{
 
 .solutions-home__category {
   @include outer-container;
-  margin-bottom: 20px;
-}
-
-.solutions-home__category-title {
-  border-bottom: 1px solid $border-color;
-  margin-bottom: 40px;
-
-  a {
-    color: $basegrey;
-  }
 }
 
 // Solutions home: Folder and article level
 // -------------
 
 .solutions-home__folder-list {
-  @include span-columns(12);
+  padding: 60px 0;
+  border-bottom: 1px solid $basegrey;
+  overflow: auto;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
-.solutions-home__article-list {
-  @include span-columns(6);
-  @include omega(2n);
-  margin-bottom: 60px;
+.solutions-home__folder-title {
+  float: left;
+  width: 33%;
+  clear: both;
 
-  @include media($media-mobile) {
-    @include span-columns(12);
+  & a {
+    color: $baseblack;
+
+    &:hover {
+      color: $linkcolor;
+    }
+  }
+}
+
+
+.solutions-home__article-list {
+  float: left;
+  width: 66%;
+  padding: 0 40px;
+  border-left: 1px solid $basegrey;
+
+  & p:last-child {
+    margin-bottom: 0;
+    color: #cd8a2a !important;
+    font-weight: 500;
+
+    & a {
+      color: $linkcolor !important;
+
+      &:hover,
+      &:visited {
+        color: $baseblack;
+      }
+    }
   }
 
   // Doing this because stupid freshdesk uses the same list in two places, but
@@ -1278,6 +1320,24 @@ input[type="password"]{
   li {
     @extend .x-article-list__item;
   }
+}
+
+.solutions-home__article-title {
+  margin-bottom: 0;
+
+  & a,
+  & a:visited {
+    color: $baseblack;
+    font-weight: 500;
+
+    &:hover {
+      color: $linkcolor;
+    }
+  }
+}
+
+.solutions-home__article-empty {
+  line-height: 0.5;
 }
 
 
@@ -1300,7 +1360,7 @@ input[type="password"]{
 }
 
 
-// New Ticket: Sidebar 
+// New Ticket: Sidebar
 // --------------
 
 .page--new-ticket {
@@ -1313,7 +1373,7 @@ input[type="password"]{
   max-height: initial;
 }
 
-// New Ticket: Thank you 
+// New Ticket: Thank you
 // --------------
 
 .page--ticket-details {
@@ -1386,7 +1446,7 @@ input[type="password"]{
 }
 
 
-// Forum: Category 
+// Forum: Category
 // -------------
 
 .forum-category {
@@ -1397,7 +1457,7 @@ input[type="password"]{
 }
 
 .forum-category__header {
-  color: $basegrey;
+  color: $baseblack;
 }
 
 .forum-category__topics {
@@ -1466,7 +1526,7 @@ input[type="password"]{
   }
 }
 
-// Forum: Discussion 
+// Forum: Discussion
 // ------------
 
 .best-answer-info {
@@ -1540,7 +1600,7 @@ input[type="password"]{
 
   .caret {
     margin-top: 12px !important;
-    border-top-color: $basegrey;
+    border-top-color: $baseblack;
   }
 }
 
@@ -1571,6 +1631,177 @@ input[type="password"]{
   }
 }
 
+//Getting Started Additions by Ashley, December 2017
+
+.page--solutions-banner {
+  height: 400px;
+	width: 100%;
+  background: url(https://s3.amazonaws.com/thinkific/file_uploads/68402/images/c3f/44d/a08/brooke-cagle-195777.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.page--solutions-banner-content {
+  position: relative;
+  top: 50%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page--solutions-banner-content .breadcrumb a, .page--solutions-banner-content .breadcrumb a:visited {
+  color: #FFFFFF !important;
+  font-weight: 500 !important;
+}
+
+.page--solutions-footer {
+	position: relative;
+  height: 400px;
+	width: 100%;
+  background-color: $basegrey;
+  background-image: url('https://s3.amazonaws.com/thinkific/file_uploads/55770/images/8b4/ea6/8bc/sign-up-background.png');
+  background-size: cover;
+  color: $baseblack;
+}
+
+.page--solutions-footer-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  & h6 {
+    color: $baseblack;
+    font-size: 1.5em;
+  }
+}
+
+.solutions-home__button {
+    display: block;
+    width: 50%;
+    margin: 2em auto 15px;
+    padding: 15px 20px;
+    border-radius: 3px;
+    font-size: 1.25em;
+    font-weight: 500;
+    background-color:$thinkdarkgold;
+    color: $basewhite;
+    text-align: center;
+    transition: background-color 600ms ease-out, -webkit-box-shadow 400ms ease, -moz-box-shadow 400ms ease, box-shadow 400ms ease;
+}
+
+.solutions-home__button:hover {
+  color: $basewhite;
+  background-color: $linkcolor;
+}
 
 
+@media only screen and (max-width: 768px) {
+  .page--solutions-banner {
+    height: 300px;
+  }
 
+  .page--solutions-banner-content {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  .page--solutions-banner, .page--solutions-footer {
+    height: 250px;
+  }
+
+  .page--solutions-banner-content h1 {
+    font-size: 1.625em; //26px
+  }
+
+  .page--solutions-footer-content h6, .page--solutions-footer-content a {
+    font-size: 0.8em;
+  }
+
+  .solutions-home__folder-title, .solutions-home__article-list, .solutions-home__button {
+    width: 100%;
+  }
+}
+
+.page--solutions-search {
+  margin: 3.5em 0;
+}
+
+.gosearch { position: relative; }
+.gosearch input { text-indent: 30px;}
+.gosearch .fa-search {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.btn-outline-primary {
+  background-color: $thinklightgold !important;
+  color: $basewhite !important;
+
+} .btn-outline-primary:hover {
+   transform: translateY(0) !important;
+   background-color:$thinkdarkgold !important;
+   color: $basewhite !important;
+}
+
+//to be removed when Solutions home is updated
+
+.bsolutions-home__category-title {
+  border-bottom: 1px solid $basegrey;
+  margin-bottom: 40px; }
+  .bsolutions-home__category-title a {
+    color: $baseblack; }
+
+.bsolutions-home__folder-list {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%; }
+  .bsolutions-home__folder-list:last-child {
+    margin-right: 0; }
+
+.bsolutions-home__article-list {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-bottom: 60px; }
+  .bsolutions-home__article-list:last-child {
+    margin-right: 0; }
+  .bsolutions-home__article-list:nth-child(2n) {
+    margin-right: 0; }
+  .bsolutions-home__article-list:nth-child(2n+1) {
+    clear: left; }
+
+  @media screen and (max-width: 768px) {
+    .bsolutions-home__article-list {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 100%;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+#attachment-type .add_attachment {
+ color: $linkcolor !important;
+}
+
+strong, b {
+  font-weight: 500 !important;
+}
+
+.variable__section td {
+  border: 1px solid black;
+  padding: 10px 5px;
+}
