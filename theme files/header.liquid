@@ -1,5 +1,5 @@
-{% if  portal.current_page != 'csat_survey' %}  
-  
+{% if  portal.current_page != 'csat_survey' %}
+
   {% unless portal.current_tab == 'home' %}
     {% assign is_visible = 'is-visible' %}
   {% endunless %}
@@ -7,41 +7,44 @@
   <header class="header header--white {{ is_visible }}">
     <div class="flex-container">
       <a href="/" class="header__logo">
-        <img src="https://s3.amazonaws.com/thinkific/file_uploads/626/images/351/be8/063/logo-grey.png" alt="{{ portal.name }} logo">
+        <img src="https://s3.amazonaws.com/thinkific/file_uploads/55770/images/846/b57/470/thinkific-help-center-logo.png" alt="{{ portal.name }} logo">
       </a>
       <nav class="header__site-nav" >
-        <div class="nav-link" id="header-tabs"> 
-          <a href="/support/solutions" class="header-tabs__link">Support</a>
-          <a href="/support/discussions" class="header-tabs__link ">Forums</a>
+        <div class="nav-link" id="header-tabs">
         </div>
       </nav>
-      <div class="header-search">
-        <form class="header-search-form" 
-              autocomplete="off" 
-              action="/support/search" 
+     {% if portal.current_page != 'solution_category' %}
+     <div class="header-search">
+        <form class="header-search-form"
+              autocomplete="off"
+              action="/support/search"
               id="header-search-form">
-          <input placeholder="Search" 
-                 type="text" 
-                 name="term" 
-                 class="header-search-input" 
-                 value="" 
-                 data-max-matches="10" 
-                 id="header-search-input" 
+          <input placeholder="Search"
+                 type="text"
+                 name="term"
+                 class="header-search-input"
+                 value=""
+                 data-max-matches="10"
+                 id="header-search-input"
                  autocomplete="off">
-          <input type="hidden" 
-                 name="authenticity_token" 
+          <input type="hidden"
+                 name="authenticity_token"
                  value="2y6ez+hc/laSH0c2IFSvMcUD8E57dN+icWLZ+ocerZo=">
         </form>
       </div>
+      {% endif %}
 
       <nav class="header__account-nav">
+          <a href="http://www.thinkific.com/" class="header-tabs__link">www.thinkific.com</a>
+          <a href="/support/solutions" class="header-tabs__link">Support</a>
+          <a href="/support/discussions" class="header-tabs__link ">Forums</a>
         {% if portal.has_user_signed_in == true %}
-          <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary x-btn-sm">
+          <a href="{{ portal.new_ticket_url }}" class="header-tabs__link ">
             Contact Us
           </a>
 
           <div class="header__account-nav--logged-in">
-            {% if portal.user.profile_url != false %}   
+            {% if portal.user.profile_url != false %}
               <img class="profile-picture" src="{{ portal.user.profile_url }}" />
             {% else %}
               <img class="profile-picture" src="/images/fillers/profile_blank_thumb.gif" />
@@ -55,9 +58,8 @@
             </div>
           </div>
         {% else %}
-          <a href="http://www.thinkific.com/" class="header-tabs__link">Back to Thinkific</a>
-          <a href="/support/tickets/new" class="header-tabs__link">Contact Us</a>          
-          <a href="https://courses.thinkific.com/sites/new" class="x-btn x-btn-primary x-btn-sm">
+          <a href="/support/tickets/new" class="header-tabs__link">Contact Us</a>
+          <a href="https://courses.thinkific.com/sites/new" class="x-btn btn-outline-primary x-btn-sm">
             Get Started Free
           </a>
         {% endif %}
@@ -70,52 +72,46 @@
     <header class="header">
       <div class="flex-container">
         <a href="/" class="header__logo">
-          <img src="https://s3.amazonaws.com/thinkific/file_uploads/626/images/42c/155/304/logo-white.png" alt="{{ portal.name }} logo">
+          <img src="https://s3.amazonaws.com/thinkific/file_uploads/55770/images/846/b57/470/thinkific-help-center-logo.png" alt="{{ portal.name }} logo">
         </a>
 
-        <nav class="header__site-nav" >
-          <div class="nav-link" id="header-tabs"> 
-            <a href="/support/solutions" class="header-tabs__link">Support</a>
-            <a href="/support/discussions" class="header-tabs__link ">Forums</a>
-          </div>
-        </nav>
-
         <nav class="header__account-nav">
-          {% if portal.has_user_signed_in == true %}
+          <a href="http://www.thinkific.com/" class="header-tabs__link">www.thinkific.com</a>
+          <a href="/support/solutions" class="header-tabs__link">Support</a>
+          <a href="/support/discussions" class="header-tabs__link ">Forums</a>
+        {% if portal.has_user_signed_in == true %}
+          <a href="{{ portal.new_ticket_url }}" class="header-tabs__link ">
+            Contact Us
+          </a>
 
-            <a href="{{ portal.new_ticket_url }}" class="x-btn x-btn-primary x-btn-sm">
-              Contact Us
-            </a>
-
-            <div class="header__account-nav--logged-in">
-              {% if portal.user.profile_url != false %}   
-                <img class="profile-picture" src="{{ portal.user.profile_url }}" />
-              {% else %}
-                <img class="profile-picture" src="/images/fillers/profile_blank_thumb.gif" />
-              {% endif %}
-              <div class="dropdown" id="action-bar-toggle">
-                <a class="dropdown-toggle profile-name" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <a href="/support/profile/edit">Edit Profile</a>
-                  <a href="/logout">Sign Out</a>
-                </ul>
-              </div>
+          <div class="header__account-nav--logged-in">
+            {% if portal.user.profile_url != false %}
+              <img class="profile-picture" src="{{ portal.user.profile_url }}" />
+            {% else %}
+              <img class="profile-picture" src="/images/fillers/profile_blank_thumb.gif" />
+            {% endif %}
+            <div class="dropdown" id="action-bar-toggle">
+              <a class="dropdown-toggle profile-name" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <a href="/support/profile/edit">Edit Profile</a>
+                <a href="/logout">Sign Out</a>
+              </ul>
             </div>
-          {% else %}
-            <a href="http://www.thinkific.com/" class="header-tabs__link">Back to Thinkific</a>
-            <a href="/support/tickets/new" class="header-tabs__link">Contact Us</a>
-            <a href="https://courses.thinkific.com/sites/new" class="x-btn x-btn-primary x-btn-sm">
-              Get Started Free
-            </a>
-          {% endif %}
-        </nav>
+          </div>
+        {% else %}
+          <a href="/support/tickets/new" class="header-tabs__link">Contact Us</a>
+          <a href="https://courses.thinkific.com/sites/new" class="x-btn x-btn-primary x-btn-sm">
+            Get Started Free
+          </a>
+        {% endif %}
+      </nav>
 
       </div>
     </header>
   {% endif %}
 
 
-{% else %} 
+{% else %}
   <header class="header">
     <div class="header__logo">
       {{ portal | logo : true }}
